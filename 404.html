@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>404 — Page Not Found | Sriram Kumar Tentu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#060906;--term:#6ee787;--term-glow:rgba(110,231,135,0.4);--ink:#d4dcd5;--muted:#5a645c;--amber:#d4a85a;}
+body{background:var(--bg);color:var(--ink);font-family:'JetBrains Mono',monospace;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+
+/* Road */
+.road{position:fixed;bottom:0;left:0;width:100%;height:120px;background:#111612;border-top:3px solid #2a3a2a;z-index:1;}
+.road-line{position:absolute;top:50%;height:4px;background:repeating-linear-gradient(to right,var(--term) 0,var(--term) 40px,transparent 40px,transparent 80px);width:200%;animation:roadMove 1.2s linear infinite;opacity:0.4;}
+@keyframes roadMove{to{transform:translateX(-50%);}}
+
+/* Car */
+.car-wrap{position:fixed;bottom:62px;z-index:10;animation:carDrive 3.5s ease-in forwards;}
+@keyframes carDrive{
+  0%{left:-200px;transform:scaleX(1);}
+  45%{left:50%;transform:translateX(-50%) scaleX(1);}
+  55%{left:50%;transform:translateX(-50%) scaleX(1);}
+  56%{transform:translateX(-50%) scaleX(-1);}
+  100%{left:calc(100% + 200px);transform:translateX(0) scaleX(-1);}
+}
+.car{font-size:64px;filter:drop-shadow(0 0 16px var(--term-glow));animation:carBounce 0.3s ease-in-out infinite alternate;}
+@keyframes carBounce{from{transform:translateY(0);}to{transform:translateY(-4px);}}
+
+/* Dust particles */
+.dust{position:fixed;bottom:90px;z-index:9;animation:dustMove 3.5s ease-in forwards;}
+@keyframes dustMove{0%{left:-100px;opacity:0;}45%{left:calc(50% - 80px);opacity:1;}100%{left:calc(100% + 100px);opacity:0;}}
+.dust-inner{display:flex;gap:4px;}
+.dust-inner span{width:5px;height:5px;border-radius:50%;background:var(--term);opacity:0.5;animation:dustBounce 0.4s ease-in-out infinite alternate;}
+.dust-inner span:nth-child(2){animation-delay:.1s;background:var(--amber);}
+.dust-inner span:nth-child(3){animation-delay:.2s;}
+@keyframes dustBounce{from{transform:translateY(0);}to{transform:translateY(-8px);opacity:0.1;}}
+
+/* Billboard */
+.billboard{position:fixed;right:12%;bottom:90px;z-index:8;text-align:center;animation:billboardFade 3.5s ease-in forwards;}
+@keyframes billboardFade{0%{opacity:0;}40%{opacity:0;}55%{opacity:1;}100%{opacity:1;}}
+.bb-post{width:4px;height:60px;background:#2a3a2a;margin:0 auto;}
+.bb-sign{background:#0b110c;border:1px solid rgba(110,231,135,0.2);border-radius:8px;padding:10px 16px;white-space:nowrap;}
+.bb-sign span{font-size:11px;color:var(--term);letter-spacing:0.1em;}
+
+/* Content */
+.content{position:relative;z-index:20;text-align:center;padding:0 24px 160px;}
+.err-code{font-family:'Space Grotesk',sans-serif;font-size:clamp(80px,20vw,160px);font-weight:800;line-height:1;color:var(--term);text-shadow:0 0 40px var(--term-glow),0 0 80px rgba(110,231,135,0.2);letter-spacing:-0.04em;}
+.err-label{font-size:clamp(14px,2.5vw,20px);color:var(--ink);margin:8px 0 6px;letter-spacing:-0.02em;}
+.err-sub{font-size:12px;color:var(--muted);letter-spacing:0.05em;margin-bottom:32px;}
+.err-sub .blink{animation:blink 1s step-end infinite;color:var(--term);}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.back-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:linear-gradient(135deg,var(--term),#8df7a3);color:#060906;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.06em;border-radius:999px;text-decoration:none;transition:all 0.3s;box-shadow:0 8px 24px rgba(110,231,135,0.3);}
+.back-btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(110,231,135,0.45);}
+
+/* Scanlines */
+body::after{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0,transparent 2px,rgba(110,231,135,0.015) 2px,rgba(110,231,135,0.015) 3px);pointer-events:none;z-index:998;}
+</style>
+</head>
+<body>
+<div class="road"><div class="road-line"></div></div>
+<div class="dust"><div class="dust-inner"><span></span><span></span><span></span></div></div>
+<div class="car-wrap"><div class="car">🏎️</div></div>
+<div class="billboard"><div class="bb-sign"><span>stentu.dev →</span></div><div class="bb-post"></div></div>
+<div class="content">
+  <div class="err-code">404</div>
+  <div class="err-label">Page not found.</div>
+  <div class="err-sub">looks like this page drove off<span class="blink">_</span></div>
+  <a href="/" class="back-btn">← back to portfolio</a>
+</div>
+</body>
+</html>
