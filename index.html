@@ -3836,7 +3836,8 @@ section + .spotlight-section::before {
 }
 
 </style>
-<style> /* ===== WEBSITE OFFER ===== */ .offer-strip{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1100px;margin:0 auto;padding:14px 28px;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);background:rgba(110,231,135,0.04)} .offer-strip p{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);margin:0} .offer-strip .term{color:var(--term)} .offer-btn{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#060906;background:var(--term);padding:10px 22px;border-radius:8px;text-decoration:none;transition:transform .2s,box-shadow .2s} .offer-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(110,231,135,.35)} .offer-section{padding:70px 0} .offer-desc{color:var(--ink-soft);max-width:640px;margin-bottom:32px;font-size:16px;line-height:1.7} .offer-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:28px} .offer-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:16px;padding:28px;text-align:center} .offer-card h3{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px} .offer-price{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;color:var(--term);margin-bottom:4px} .offer-note{font-size:13px;color:var(--muted);margin-bottom:20px} .offer-trust{font-size:14px;color:var(--ink-soft)} .offer-trust a{color:var(--term)} @media(max-width:640px){.offer-strip{padding:12px 16px}.offer-strip p{font-size:12px}} </style> </head>
+<style> /* ===== WEBSITE OFFER + MERGED BLOCKS ===== */
+.merged-block{margin-top:56px}.merged-title{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-bottom:24px}.merged-title::before{content:'> ';color:var(--term)} .offer-strip{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1100px;margin:0 auto;padding:14px 28px;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);background:rgba(110,231,135,0.04)} .offer-strip p{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);margin:0} .offer-strip .term{color:var(--term)} .offer-btn{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#060906;background:var(--term);padding:10px 22px;border-radius:8px;text-decoration:none;transition:transform .2s,box-shadow .2s} .offer-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(110,231,135,.35)} .offer-section{padding:70px 0} .offer-desc{color:var(--ink-soft);max-width:640px;margin-bottom:32px;font-size:16px;line-height:1.7} .offer-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:28px} .offer-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:16px;padding:28px;text-align:center} .offer-card h3{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px} .offer-price{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;color:var(--term);margin-bottom:4px} .offer-note{font-size:13px;color:var(--muted);margin-bottom:20px} .offer-trust{font-size:14px;color:var(--ink-soft)} .offer-trust a{color:var(--term)} @media(max-width:640px){.offer-strip{padding:12px 16px}.offer-strip p{font-size:12px}} </style> </head>
 <body>
 <!-- Loading Screen -->
 <div id="loading-screen">
@@ -3940,8 +3941,7 @@ section + .spotlight-section::before {
   </div>
 </header>
 
-<!-- WEBSITE OFFER STRIP --> <div class="offer-strip reveal"> <p><span class="term">&gt;</span> I build business websites for clients — <strong>$99</strong> launch offer, first 3 only.</p> <a class="offer-btn" href="https://ramtech.solutions/form" target="_blank" rel="noopener">Get yours</a> </div> <section id="about">
-  <div class="container">
+<!-- WEBSITE OFFER STRIP --> <div class="offer-strip reveal"> <p><span class="term">&gt;</span> I build business websites for clients — <strong>$99</strong> launch offer, first 3 only.</p> <a class="offer-btn" href="https://ramtech.solutions/form" target="_blank" rel="noopener">Get yours</a> </div> <section id="about"><div class="container">
     <div class="section-label reveal">01 / About</div>
     <h2 class="section-title reveal">Engineer first.<br><span class="founder-accent">Founder</span> always. Researcher at heart.</h2>
     <div class="about-grid">
@@ -3975,8 +3975,76 @@ section + .spotlight-section::before {
         </ul>
       </aside>
     </div>
-  </div>
-</section>
+  
+<div class="merged-block">
+<h3 class="merged-title">By the numbers</h3>
+<div class="numbers-grid">
+      <div class="num-card reveal">
+        <span class="nc-val" data-numcount="500" data-suffix="K+">0</span>
+        <span class="nc-label">Lines of Code</span>
+        <span class="nc-sub">written across all projects</span>
+      </div>
+      <div class="num-card reveal">
+        <span class="nc-val" data-numcount="400" data-suffix="+">0</span>
+        <span class="nc-label">Clinics Served</span>
+        <span class="nc-sub">via Argencis DME platform</span>
+      </div>
+      <div class="num-card amber-num reveal">
+        <span class="nc-val" data-numcount="45" data-suffix="%">0</span>
+        <span class="nc-label">Fluency Improvement</span>
+        <span class="nc-sub">VR stuttering therapy research</span>
+      </div>
+      <div class="num-card reveal">
+        <span class="nc-val" data-numcount="3" data-suffix="">0</span>
+        <span class="nc-label">Countries Presented</span>
+        <span class="nc-sub">Portugal, USA (Seattle, DC)</span>
+      </div>
+      <div class="num-card amber-num reveal">
+        <span class="nc-val" data-numcount="0" data-suffix="">0</span>
+        <span class="nc-label">Production Outages</span>
+        <span class="nc-sub">on Argencis platform</span>
+      </div>
+      <div class="num-card reveal">
+        <span class="nc-val" data-numcount="7" data-suffix="">0</span>
+        <span class="nc-label">Publications</span>
+        <span class="nc-sub">IEEE, Springer, ASHA</span>
+      </div>
+      <div class="num-card reveal">
+        <span class="nc-val" data-numcount="5" data-suffix="+">0</span>
+        <span class="nc-label">VR Apps Built</span>
+        <span class="nc-sub">Oculus, HTC Vive, HoloLens</span>
+      </div>
+      <div class="num-card amber-num reveal">
+        <span class="nc-val" data-numcount="60" data-suffix="%">0</span>
+        <span class="nc-label">Efficiency Gain</span>
+        <span class="nc-sub">OSU lab researcher workflow</span>
+      </div>
+    </div>
+</div>
+
+<div class="merged-block">
+<h3 class="merged-title">GitHub activity</h3>
+<div class="github-wrap reveal">
+      <div class="github-header">
+        <span class="gh-title">contribution activity — past 12 months</span>
+        <a href="https://github.com/sriram261" target="_blank" rel="noopener">github.com/sriram261 →</a>
+      </div>
+      <div class="heatmap-grid" id="heatmap-grid"></div>
+      <div class="heatmap-footer">
+        <span id="heatmap-total">loading...</span>
+        <div class="heatmap-legend">
+          <span>Less</span>
+          <div class="legend-cell" style="background:rgba(110,231,135,0.06)"></div>
+          <div class="legend-cell l1"></div>
+          <div class="legend-cell l2"></div>
+          <div class="legend-cell l3"></div>
+          <div class="legend-cell l4"></div>
+          <span>More</span>
+        </div>
+      </div>
+    </div>
+</div>
+</div></section>
 
 <section id="experience">
   <div class="container">
@@ -4112,11 +4180,12 @@ section + .spotlight-section::before {
 </section>
 
 <!-- Currently Building -->
-<section id="building">
-  <div class="container">
-    <div class="section-label reveal">03.5 / Currently Building</div>
-    <h2 class="section-title reveal">What I'm <span class="term">shipping</span> right now.</h2>
-    <div class="building-grid">
+
+
+<section id="projects"><div class="container">
+<div class="merged-block">
+<h3 class="merged-title">Currently shipping</h3>
+<div class="building-grid">
 
       <div class="building-card glass reveal">
         <div class="building-status">
@@ -4161,11 +4230,8 @@ section + .spotlight-section::before {
       </div>
 
     </div>
-  </div>
-</section>
+</div>
 
-<section id="projects">
-  <div class="container">
     <div class="section-label reveal">04 / Selected Work</div>
     <h2 class="section-title reveal">Things I&rsquo;ve <span class="term">built</span> and <span class="term">shipped</span>.</h2>
     <div class="projects-grid">
@@ -4194,8 +4260,7 @@ section + .spotlight-section::before {
         <div class="project-tags"><span>Django</span><span>Python</span><span>MySQL</span><span>TypeScript</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </div></section>
 
 <section id="skills">
   <div class="container">
@@ -4224,125 +4289,13 @@ section + .spotlight-section::before {
 </section>
 
 <!-- Speaking / Conferences -->
-<section id="speaking">
-  <div class="container">
-    <div class="section-label reveal">05.5 / Speaking</div>
-    <h2 class="section-title reveal">Conference presentations across <span class="term">three countries</span>.</h2>
-    <div class="speaking-grid">
 
-      <div class="speaking-card glass reveal">
-        <div class="speaking-badge badge-award">🏆 Best Poster Award</div>
-        <div class="speaking-year">2024</div>
-        <div class="speaking-conf">IEEE SeGAH 2024</div>
-        <h4>The Potential of Virtual Reality Digital Twins to Serve as Therapy Approaches for Stuttering</h4>
-        <div class="speaking-location">
-          <div class="speaking-pin"></div>
-          Funchal, Madeira, Portugal
-        </div>
-      </div>
-
-      <div class="speaking-card glass reveal">
-        <div class="speaking-badge badge-conf">Conference Talk</div>
-        <div class="speaking-year">2024</div>
-        <div class="speaking-conf">ASHA Convention 2024</div>
-        <h4>Virtually Everything We Know About Virtual Reality and Stuttering</h4>
-        <div class="speaking-location">
-          <div class="speaking-pin"></div>
-          Seattle, WA, United States
-        </div>
-      </div>
-
-      <div class="speaking-card glass reveal">
-        <div class="speaking-badge badge-conf">Conference Talk</div>
-        <div class="speaking-year">2025</div>
-        <div class="speaking-conf">ASHA Convention 2025</div>
-        <h4>Virtual Reality Application in Stuttering Therapy and Research</h4>
-        <div class="speaking-location">
-          <div class="speaking-pin"></div>
-          Washington D.C., United States
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- Numbers -->
-<section id="numbers">
-  <div class="container">
-    <div class="section-label reveal">05.8 / By The Numbers</div>
-    <h2 class="section-title reveal">Impact in <span class="term">numbers</span>.</h2>
-    <div class="numbers-grid">
-      <div class="num-card reveal">
-        <span class="nc-val" data-numcount="500" data-suffix="K+">0</span>
-        <span class="nc-label">Lines of Code</span>
-        <span class="nc-sub">written across all projects</span>
-      </div>
-      <div class="num-card reveal">
-        <span class="nc-val" data-numcount="400" data-suffix="+">0</span>
-        <span class="nc-label">Clinics Served</span>
-        <span class="nc-sub">via Argencis DME platform</span>
-      </div>
-      <div class="num-card amber-num reveal">
-        <span class="nc-val" data-numcount="45" data-suffix="%">0</span>
-        <span class="nc-label">Fluency Improvement</span>
-        <span class="nc-sub">VR stuttering therapy research</span>
-      </div>
-      <div class="num-card reveal">
-        <span class="nc-val" data-numcount="3" data-suffix="">0</span>
-        <span class="nc-label">Countries Presented</span>
-        <span class="nc-sub">Portugal, USA (Seattle, DC)</span>
-      </div>
-      <div class="num-card amber-num reveal">
-        <span class="nc-val" data-numcount="0" data-suffix="">0</span>
-        <span class="nc-label">Production Outages</span>
-        <span class="nc-sub">on Argencis platform</span>
-      </div>
-      <div class="num-card reveal">
-        <span class="nc-val" data-numcount="7" data-suffix="">0</span>
-        <span class="nc-label">Publications</span>
-        <span class="nc-sub">IEEE, Springer, ASHA</span>
-      </div>
-      <div class="num-card reveal">
-        <span class="nc-val" data-numcount="5" data-suffix="+">0</span>
-        <span class="nc-label">VR Apps Built</span>
-        <span class="nc-sub">Oculus, HTC Vive, HoloLens</span>
-      </div>
-      <div class="num-card amber-num reveal">
-        <span class="nc-val" data-numcount="60" data-suffix="%">0</span>
-        <span class="nc-label">Efficiency Gain</span>
-        <span class="nc-sub">OSU lab researcher workflow</span>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- GitHub Heatmap -->
-<section id="github">
-  <div class="container">
-    <div class="section-label reveal">05.9 / GitHub Activity</div>
-    <h2 class="section-title reveal">Consistent contributor, <span class="term">every week</span>.</h2>
-    <div class="github-wrap reveal">
-      <div class="github-header">
-        <span class="gh-title">contribution activity — past 12 months</span>
-        <a href="https://github.com/sriram261" target="_blank" rel="noopener">github.com/sriram261 →</a>
-      </div>
-      <div class="heatmap-grid" id="heatmap-grid"></div>
-      <div class="heatmap-footer">
-        <span id="heatmap-total">loading...</span>
-        <div class="heatmap-legend">
-          <span>Less</span>
-          <div class="legend-cell" style="background:rgba(110,231,135,0.06)"></div>
-          <div class="legend-cell l1"></div>
-          <div class="legend-cell l2"></div>
-          <div class="legend-cell l3"></div>
-          <div class="legend-cell l4"></div>
-          <span>More</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section id="research">
   <div class="container">
@@ -4409,8 +4362,7 @@ section + .spotlight-section::before {
   </div>
 </section>
 
-<section id="education">
-  <div class="container">
+<section id="education"><div class="container">
     <div class="section-label reveal">07 / Education</div>
     <h2 class="section-title reveal">Two graduate degrees, one undergraduate, and a constant <span class="term">curiosity</span>.</h2>
     <div class="edu-list">
@@ -4430,14 +4382,10 @@ section + .spotlight-section::before {
         <div class="dates">JUN 2018 - MAY 2022</div>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="certifications">
-  <div class="container">
-    <div class="section-label reveal">08 / Certifications</div>
-    <h2 class="section-title reveal">Continuous learning across <span class="term">cloud</span>, <span class="term">security</span>, and <span class="term">data</span>.</h2>
-    <div class="cert-grid">
+  
+<div class="merged-block">
+<h3 class="merged-title">Certifications</h3>
+<div class="cert-grid">
       <div class="cert-item glass reveal">
         <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 7v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V7l-8-5z"/></svg></div>
         <div class="cert-text"><div class="name">Aviatrix Certified Engineer</div><div class="issuer">AVIATRIX , 2021</div></div>
@@ -4487,14 +4435,55 @@ section + .spotlight-section::before {
         <div class="cert-text"><div class="name">Introduction to Cybersecurity</div><div class="issuer">CISCO</div></div>
       </div>
     </div>
-  </div>
-</section>
+</div>
+</div></section>
+
+
 
 <!-- Connect / Linktree Hub -->
 <!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="container">
-    <div class="section-label reveal">09 / Testimonials</div>
+<section id="testimonials"><div class="container">
+<div class="merged-block">
+<h3 class="merged-title">Speaking</h3>
+<div class="speaking-grid">
+
+      <div class="speaking-card glass reveal">
+        <div class="speaking-badge badge-award">🏆 Best Poster Award</div>
+        <div class="speaking-year">2024</div>
+        <div class="speaking-conf">IEEE SeGAH 2024</div>
+        <h4>The Potential of Virtual Reality Digital Twins to Serve as Therapy Approaches for Stuttering</h4>
+        <div class="speaking-location">
+          <div class="speaking-pin"></div>
+          Funchal, Madeira, Portugal
+        </div>
+      </div>
+
+      <div class="speaking-card glass reveal">
+        <div class="speaking-badge badge-conf">Conference Talk</div>
+        <div class="speaking-year">2024</div>
+        <div class="speaking-conf">ASHA Convention 2024</div>
+        <h4>Virtually Everything We Know About Virtual Reality and Stuttering</h4>
+        <div class="speaking-location">
+          <div class="speaking-pin"></div>
+          Seattle, WA, United States
+        </div>
+      </div>
+
+      <div class="speaking-card glass reveal">
+        <div class="speaking-badge badge-conf">Conference Talk</div>
+        <div class="speaking-year">2025</div>
+        <div class="speaking-conf">ASHA Convention 2025</div>
+        <h4>Virtual Reality Application in Stuttering Therapy and Research</h4>
+        <div class="speaking-location">
+          <div class="speaking-pin"></div>
+          Washington D.C., United States
+        </div>
+      </div>
+
+    </div>
+</div>
+
+    <div class="section-label reveal">08 / Testimonials</div>
     <h2 class="section-title reveal">What people say about <span class="term">working with me</span>.</h2>
     <div class="testimonials-grid">
 
@@ -4535,13 +4524,11 @@ section + .spotlight-section::before {
       </div>
 
     </div>
-  </div>
-</section>
+  </div></section>
 
 <p class="offer-trust reveal" style="text-align:center;margin-top:32px;">Want results like these? <a href="https://ramtech.solutions/form" target="_blank" rel="noopener">Get your website</a> — $99 launch offer.</p> <!-- CAREER TIMELINE -->
-<section id="journey" class="timeline-section">
-  <div class="container">
-    <div class="section-label reveal">10 / Journey</div>
+<section id="journey" class="timeline-section"><div class="container">
+    <div class="section-label reveal">09 / Journey</div>
     <h2 class="section-title reveal">The story so <span class="term">far</span>.</h2>
     <div class="career-timeline">
 
@@ -4626,15 +4613,10 @@ section + .spotlight-section::before {
       </div>
 
     </div>
-  </div>
-</section>
-
-<!-- Currently Learning -->
-<section id="learning">
-  <div class="container">
-    <div class="section-label reveal">10.5 / Currently Learning</div>
-    <h2 class="section-title reveal">What I'm <span class="term">exploring</span> right now.</h2>
-    <div class="learning-grid">
+  
+<div class="merged-block">
+<h3 class="merged-title">Currently learning</h3>
+<div class="learning-grid">
 
       <div class="learning-card glass reveal">
         <div class="learning-card-label">Deepening</div>
@@ -4693,13 +4675,16 @@ section + .spotlight-section::before {
       </div>
 
     </div>
-  </div>
-</section>
+</div>
+</div></section>
+
+<!-- Currently Learning -->
+
 
 <!-- Terminal -->
 <section id="terminal" class="terminal-section">
   <div class="container">
-    <div class="section-label reveal">10.6 / Interactive</div>
+    <div class="section-label reveal">10 / Interactive</div>
     <h2 class="section-title reveal">Talk to my <span class="term">terminal</span>.</h2>
     <div class="terminal-wrap reveal">
       <div class="term-bar-row">
@@ -4720,12 +4705,24 @@ section + .spotlight-section::before {
   </div>
 </section>
 
-<section id="connect">
-  <div class="container">
-    <div class="section-label reveal">11 / Connect</div>
-    <h2 class="section-title reveal">Find me everywhere I <span class="term">code, write, and learn</span>.</h2>
-
-    <!-- Interactive Social Icons -->
+<section id="connect"><div class="container">
+<div class="section-label reveal">11 / Get In Touch</div>
+<h2 class="section-title reveal">Let&rsquo;s build something<br><span class="term">meaningful</span>.</h2>
+<p class="reveal">Open to backend engineering, cloud, and full-stack opportunities. Always happy to chat about software, research, or new ideas.</p>
+    <div class="copy-email-wrap reveal">
+      <a href="mailto:tentusriramkumarr@gmail.com" class="contact-email">tentusriramkumarr@gmail.com</a>
+      <button class="copy-email-btn" onclick="copyEmail()" aria-label="Copy email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      </button>
+    </div>
+    <div class="contact-quick reveal">
+      <a href="tel:+14057628061">+1 405.762.8061</a>
+      <a href="https://www.linkedin.com/in/stentu" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://fluentloopai.com" target="_blank" rel="noopener">fluentloop</a>
+      <a href="https://www.ramtech.solutions" target="_blank" rel="noopener">ramtech</a>
+      <a href="https://www.tentwotechnologies.com" target="_blank" rel="noopener">tentwo</a>
+    </div>
+<!-- Interactive Social Icons -->
     <div class="social-icons-row reveal">
       <a href="https://www.linkedin.com/in/stentu" target="_blank" rel="noopener" class="social-icon-btn">
         <span class="social-tooltip">LinkedIn</span>
@@ -4810,29 +4807,40 @@ section + .spotlight-section::before {
         <div class="hub-arrow">&rarr;</div>
       </a>
     </div>
-  </div>
-</section>
+<div class="lamp-contact-wrapper reveal">
+      <!-- Lamp on the right side now, form on left -->
+      <div class="lamp-contact-form" id="lampForm">
+        <h4>send a message</h4>
+        <form id="lcf-form" action="https://formspree.io/f/mzdwnkkn" method="POST" onsubmit="submitLampForm(event)">
+          <div class="lcf-field"><label>name</label><input type="text" name="name" placeholder="Your name" required /></div>
+          <div class="lcf-field"><label>email</label><input type="email" name="email" placeholder="your@email.com" required /></div>
+          <div class="lcf-field"><label>message</label><textarea name="message" rows="3" placeholder="What's on your mind?" required></textarea></div>
+          <input type="hidden" name="_subject" value="New message from sriramtentu.com" />
+          <input type="hidden" name="Form Source" value="sriramtentu.com" />
+          
+          <button type="submit" class="lcf-submit" id="lcf-btn">send message</button>
+        </form>
+        <div id="lcf-success" style="display:none;text-align:center;padding:16px 0;">
+          <div style="font-size:28px;margin-bottom:8px;">✅</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--term);letter-spacing:0.04em;">message sent!</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px;">I'll get back to you soon.</div>
+        </div>
+      </div>
+      <div class="lamp-wrap" id="lampWrap" onclick="toggleLamp()">
+        <svg class="lamp-svg" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="20,80 80,80 65,30 35,30" fill="#d4c5a9" stroke="#b8a88a" stroke-width="1.5"/>
+          <polygon id="lampGlow" points="25,78 75,78 62,34 38,34" fill="rgba(255,220,80,0)" style="transition:fill 0.6s"/>
+          <circle id="lampBulb" cx="50" cy="28" r="7" fill="#888" style="transition:fill 0.6s"/>
+          <rect x="47" y="80" width="6" height="55" fill="#888" rx="2"/>
+          <ellipse cx="50" cy="138" rx="22" ry="6" fill="#888"/>
+          <rect x="35" y="132" width="30" height="8" fill="#999" rx="3"/>
+        </svg>
+        <div class="lamp-cord"></div>
+        <p class="lamp-hint">✦ click lamp to reveal form</p>
+      </div>
+    </div></div></section>
 
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="section-label reveal" style="justify-content: center; display: inline-flex;">// Get In Touch</div>
-    <h2 class="reveal">Let&rsquo;s build something<br><span class="term">meaningful</span>.</h2>
-    <p class="reveal">Open to backend engineering, cloud, and full-stack opportunities. Always happy to chat about software, research, or new ideas.</p>
-    <div class="copy-email-wrap reveal">
-      <a href="mailto:tentusriramkumarr@gmail.com" class="contact-email">tentusriramkumarr@gmail.com</a>
-      <button class="copy-email-btn" onclick="copyEmail()" aria-label="Copy email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      </button>
-    </div>
-    <div class="contact-quick reveal">
-      <a href="tel:+14057628061">+1 405.762.8061</a>
-      <a href="https://www.linkedin.com/in/stentu" target="_blank" rel="noopener">linkedin</a>
-      <a href="https://fluentloopai.com" target="_blank" rel="noopener">fluentloop</a>
-      <a href="https://www.ramtech.solutions" target="_blank" rel="noopener">ramtech</a>
-      <a href="https://www.tentwotechnologies.com" target="_blank" rel="noopener">tentwo</a>
-    </div>
-  </div>
-</section>
+
 
 <!-- Scroll Speedometer -->
 <svg id="speedometer" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
@@ -4975,44 +4983,7 @@ section + .spotlight-section::before {
 </section>
 
 <!-- WEBSITE OFFER SECTION --> <section id="websites" class="offer-section"> <div class="container"> <div class="section-label reveal">Services</div> <h2 class="section-title reveal">Need a <span class="term">website</span>?</h2> <p class="offer-desc reveal">Clean, professional business and portfolio websites. 5 pages, mobile-ready, live in 3 to 5 days. Launch pricing for the first 3 clients.</p> <div class="offer-cards"> <div class="offer-card glass reveal"> <h3>US Clients</h3> <div class="offer-price">$99</div> <p class="offer-note">via RamTech Solutions LLC</p> <a class="offer-btn" href="https://ramtech.solutions/form" target="_blank" rel="noopener">Start</a> </div> <div class="offer-card glass reveal"> <h3>India Clients</h3> <div class="offer-price">₹4,999</div> <p class="offer-note">via TenTwo Technologies</p> <a class="offer-btn" href="https://tentwotechnologies.com/form" target="_blank" rel="noopener">Start</a> </div> </div> <p class="offer-trust reveal">Don't take my word for it — <a href="#testimonials">see what clients say</a>.</p> </div> </section> <!-- Lamp Contact after lab -->
-<section id="message" style="padding: 56px 0 48px;">
-  <div class="container">
-    <div class="section-label reveal">13 / Drop a Message</div>
-    <h2 class="section-title reveal" style="margin-bottom:40px;">Got something to <span class="term">say</span>?</h2>
-    <div class="lamp-contact-wrapper reveal">
-      <!-- Lamp on the right side now, form on left -->
-      <div class="lamp-contact-form" id="lampForm">
-        <h4>send a message</h4>
-        <form id="lcf-form" action="https://formspree.io/f/mzdwnkkn" method="POST" onsubmit="submitLampForm(event)">
-          <div class="lcf-field"><label>name</label><input type="text" name="name" placeholder="Your name" required /></div>
-          <div class="lcf-field"><label>email</label><input type="email" name="email" placeholder="your@email.com" required /></div>
-          <div class="lcf-field"><label>message</label><textarea name="message" rows="3" placeholder="What's on your mind?" required></textarea></div>
-          <input type="hidden" name="_subject" value="New message from sriramtentu.com" />
-          <input type="hidden" name="Form Source" value="sriramtentu.com" />
-          
-          <button type="submit" class="lcf-submit" id="lcf-btn">send message</button>
-        </form>
-        <div id="lcf-success" style="display:none;text-align:center;padding:16px 0;">
-          <div style="font-size:28px;margin-bottom:8px;">✅</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--term);letter-spacing:0.04em;">message sent!</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px;">I'll get back to you soon.</div>
-        </div>
-      </div>
-      <div class="lamp-wrap" id="lampWrap" onclick="toggleLamp()">
-        <svg class="lamp-svg" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="20,80 80,80 65,30 35,30" fill="#d4c5a9" stroke="#b8a88a" stroke-width="1.5"/>
-          <polygon id="lampGlow" points="25,78 75,78 62,34 38,34" fill="rgba(255,220,80,0)" style="transition:fill 0.6s"/>
-          <circle id="lampBulb" cx="50" cy="28" r="7" fill="#888" style="transition:fill 0.6s"/>
-          <rect x="47" y="80" width="6" height="55" fill="#888" rx="2"/>
-          <ellipse cx="50" cy="138" rx="22" ry="6" fill="#888"/>
-          <rect x="35" y="132" width="30" height="8" fill="#999" rx="3"/>
-        </svg>
-        <div class="lamp-cord"></div>
-        <p class="lamp-hint">✦ click lamp to reveal form</p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- Chat FAB -->
 <button id="chat-fab" onclick="toggleChat(null)" aria-label="Open chat">
