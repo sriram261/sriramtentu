@@ -7097,7 +7097,6 @@ const chatQA = [
   { keys: ['hello','hi ','hey','whats up','sup','howdy','greet','good morning','good afternoon'], answer: `Hey! 👋 I'm Sriram's portfolio AI.\n\nI can answer questions about his skills, work experience, projects, research, education, companies, and contact info.\n\nWhat would you like to know?` },
   { keys: ['who','about','sriram','tentu','person','describe','introduc'], answer: `Sriram Kumar Tentu is a Backend & Cloud Engineer, Founder, and Researcher.\n\n🔧 7+ years building production systems — FastAPI, AWS, React, Unity 3D\n🏢 Founded RamTech Solutions (US) and TenTwo Technologies (India)\n🎓 M.S. CS from Oklahoma State University\n📄 Research publications and conference contributions across IEEE, Springer, ASHA & ProQuest\n🎙️ Built FluentLoop — AI speech therapy platform\n📍 Based in Oklahoma City, OK` },
   { keys: ['vr','virtual reality','unity','oculus','htc','hololens','xr','augment','immersive','metaverse'], answer: `Sriram is an XR/VR specialist:\n\n🥽 5 VR applications built in Unity for Oculus Quest, HTC Vive, and HoloLens 2\n🎓 MS thesis on VR for stuttering therapy — 45% fluency improvement\n🏆 Best Outstanding Poster at IEEE SeGAH 2024 (Funchal, Portugal)\n🔬 Research at OSU's Stuttering Research Lab and Center for Cyber-Physical Systems\n📄 Multiple publications on VR/AR, digital twins, healthcare, and stuttering research` },
-,
   { keys: ['website','web site','landing page','business website','need a website','want a website','build a website','get a website','my business','website cost','website price','cost','price'],
     answer: 'Yes! Sriram builds business websites.\n\nLaunch offer (first 3 clients):\n- US: $99 via RamTech Solutions LLC, form at ramtech.solutions/form\n- India: \u20b94,999 via TenTwo Technologies, form at tentwotechnologies.com/form\n\n5 pages, mobile-ready, live in 3 to 5 days. Fill the form and he will get back to you.' },
   { keys: ['argencis','dme','wound care','hipaa','400 clinics','medical platform'],
@@ -7145,14 +7144,38 @@ const chatQA = [
   { keys: ['resume','cv','download resume','download'],
     answer: `You can download Sriram's resume with the Download Resume button at the top of this page.` }];
 
-function getBotReply(input) {
+function lev(a, b) {
+    const m = a.length, n = b.length;
+    if (!m) return n; if (!n) return m;
+    let prev = Array.from({length: n + 1}, (_, j) => j);
+    for (let i = 1; i <= m; i++) {
+      let cur = [i];
+      for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j-1] + 1, prev[j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+      prev = cur;
+    }
+    return prev[n];
+  }
+  function keyScore(lc, key) {
+    if (lc.includes(key)) return key.length;
+    if (key.length < 5 || key.includes(' ')) return 0;
+    const words = lc.split(/[^a-z]+/);
+    let best = 0;
+    for (const w of words) {
+      if (w.length < 4) continue;
+      if (key.includes(w) || w.includes(key)) continue;
+      const maxD = key.length >= 6 ? 2 : 1;
+      if (lev(w, key) <= maxD) best = Math.max(best, key.length * 0.9);
+    }
+    return best;
+  }
+  function getBotReply(input) {
   const lc = input.toLowerCase().replace(/[?!.,]/g, '');
   // Score each QA by total matched keyword length (more specific wins)
   let best = null, bestScore = 0;
   for (const qa of chatQA) {
     let score = 0;
     for (const k of qa.keys) {
-      if (lc.includes(k)) score += k.length;
+      score += keyScore(lc, k);
     }
     if (score > bestScore) { bestScore = score; best = qa; }
   }
