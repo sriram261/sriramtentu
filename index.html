@@ -6191,7 +6191,18 @@ function showToast() {
   const history = [];
   let histIdx = -1;
 
-  const COMMANDS = {
+  function tlev(a, b) {
+      const m = a.length, n = b.length;
+      if (!m) return n; if (!n) return m;
+      let prev = Array.from({length: n + 1}, (_, j) => j);
+      for (let i = 1; i <= m; i++) {
+        let cur = [i];
+        for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j-1] + 1, prev[j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+        prev = cur;
+      }
+      return prev[n];
+    }
+    const COMMANDS = {
     help: () => [
       { text: 'Available commands:', cls: 'green' },
       { text: '  whoami       — who is Sriram?', cls: '' },
@@ -6207,6 +6218,33 @@ function showToast() {
       { text: '  clear        — clear terminal', cls: '' },
       { text: '  hello        — say hi', cls: '' },
       { text: '  services     — website offer ($99 / \u20b94,999)', cls: '' },
+      { text: "  available    \u2014 Yes! Sriram is actively open to:", cls: '' },
+      { text: "  cert         \u2014 Certifications:", cls: '' },
+      { text: "  locat        \u2014 \ud83d\udccd Currently based in Oklahoma City, OK, US", cls: '' },
+      { text: "  salary       \u2014 Sriram hasn't listed specific rates public", cls: '' },
+      { text: "  who          \u2014 Sriram Kumar Tentu is a Backend & Cloud En", cls: '' },
+      { text: "  vr           \u2014 Sriram is an XR/VR specialist:", cls: '' },
+      { text: "  argencis     \u2014 Sriram works at Argencis Medical in Oklaho", cls: '' },
+      { text: "  boeing       \u2014 Sriram was a Python Developer at The Boein", cls: '' },
+      { text: "  ramtech      \u2014 RamTech Solutions LLC is Sriram's US compa", cls: '' },
+      { text: "  tentwo       \u2014 TenTwo Technologies Private Limited is Sri", cls: '' },
+      { text: "  internship   \u2014 In May to June 2026 TenTwo ran a paid inte", cls: '' },
+      { text: "  thesis       \u2014 Sriram's M.S. thesis at Oklahoma State Uni", cls: '' },
+      { text: "  mba          \u2014 Sriram earned his MBA from KL University, ", cls: '' },
+      { text: "  telugu       \u2014 Sriram speaks English and Telugu.", cls: '' },
+      { text: "  speaking     \u2014 Sriram has presented at conferences across", cls: '' },
+      { text: "  testimonial  \u2014 People Sriram has worked with praise his r", cls: '' },
+      { text: "  journey      \u2014 Sriram started as a web app pentester in I", cls: '' },
+      { text: "  currently    \u2014 Right now Sriram is shipping: Argencis Pha", cls: '' },
+      { text: "  learning     \u2014 Currently exploring: AI and machine learni", cls: '' },
+      { text: "  tuberose     \u2014 Tuberose & Co is Sriram's Amazon India bra", cls: '' },
+      { text: "  movingtoindia \u2014 Yes, Sriram is moving to India in the next", cls: '' },
+      { text: "  easteregg    \u2014 This site hides a few secrets: open the te", cls: '' },
+      { text: "  blog         \u2014 Sriram writes on the TenTwo blog at tentwo", cls: '' },
+      { text: "  thank        \u2014 You are welcome! Anything else you want to", cls: '' },
+      { text: "  howareyou    \u2014 Doing great, thanks for asking! I am Srira", cls: '' },
+      { text: "  resume       \u2014 You can download Sriram's resume with the ", cls: '' },
+      { text: "  website      \u2014 Yes! Sriram builds business websites.", cls: '' },
     ],
     whoami: () => [
       { text: 'Sriram Kumar Tentu', cls: 'green' },
@@ -6299,7 +6337,146 @@ function showToast() {
       { text: 'Thanks for checking out the portfolio.', cls: '' },
       { text: 'Feel free to type any command — I built this for fun.', cls: 'muted' },
     ],
-    services: () => {       setTimeout(() => document.getElementById('websites')?.scrollIntoView({behavior:'smooth'}), 800);       return [         { text: 'Need a website? Launch offer:', cls: 'green' },         { text: '  US clients     $99      -> ramtech.solutions/form', cls: '' },         { text: '  India clients  \u20b94,999   -> tentwotechnologies.com/form', cls: '' },         { text: '  5 pages, mobile-ready, live in 3 to 5 days. First 3 clients only.', cls: 'muted' },         { text: 'Taking you there now...', cls: 'amber' },       ];     },
+    services: () => {       setTimeout(() => document.getElementById('websites')?.scrollIntoView({behavior:'smooth'}), 800);       return [         { text: 'Need a website? Launch offer:', cls: 'green' },         { text: '  US clients     $99      -> ramtech.solutions/form', cls: '' },         { text: '  India clients  \u20b94,999   -> tentwotechnologies.com/form', cls: '' },         { text: '  5 pages, mobile-ready, live in 3 to 5 days. First 3 clients only.', cls: 'muted' },         { text: 'Taking you there now...', cls: 'amber' },       ];     },    available: () => [
+        { text: "Yes! Sriram is actively open to:", cls: '' },
+        { text: "", cls: '' },
+        { text: "\u2705 Backend / Cloud engineering roles", cls: '' },
+        { text: "\u2705 Full-stack development", cls: '' },
+        { text: "\u2705 Freelance / contract via RamTech Solutions", cls: '' },
+        { text: "\u2705 Healthcare, EdTech, and enterprise software", cls: '' },
+        { text: "", cls: '' },
+        { text: "\ud83d\udccd Oklahoma City, OK (open to remote)", cls: '' },
+        { text: "\ud83d\udce7 tentusriramkumarr@gmail.com", cls: '' },
+        { text: "\ud83d\udcde +1 405.762.8061", cls: '' }
+      ],
+    cert: () => [
+        { text: "Certifications:", cls: '' },
+        { text: "", cls: '' },
+        { text: "\ud83d\udee1\ufe0f Aviatrix Certified Engineer", cls: '' },
+        { text: "\ud83d\udd10 Secure Software Design \u2014 Univ. of Colorado", cls: '' },
+        { text: "\ud83d\udcca IBM Data Science Specialization", cls: '' },
+        { text: "\ud83c\udf10 CCNA Switching, Routing & Wireless \u2014 Cisco", cls: '' },
+        { text: "\ud83e\udd16 Automation Anywhere RPA Pro", cls: '' },
+        { text: "\ud83d\udd12 CISSP, CISM, CCSP Training \u2014 Simplilearn", cls: '' },
+        { text: "\ud83d\udda5\ufe0f NDG Linux Essentials \u2014 Cisco", cls: '' },
+        { text: "\ud83c\udf10 Blockchain Specialization \u2014 Coursera", cls: '' },
+        { text: "\ud83c\udf10 CompTIA Network+ Training", cls: '' }
+      ],
+    locat: () => [
+        { text: "\ud83d\udccd Currently based in Oklahoma City, OK, USA", cls: '' },
+        { text: "\ud83c\uddee\ud83c\uddf3 Also runs TenTwo Technologies in Andhra Pradesh, India", cls: '' },
+        { text: "\ud83d\udcbb Open to remote work globally", cls: '' }
+      ],
+    salary: () => [
+        { text: "Sriram hasn't listed specific rates publicly, but he's open to discussion.", cls: '' },
+        { text: "", cls: '' },
+        { text: "Best to reach out directly:", cls: '' },
+        { text: "\ud83d\udce7 tentusriramkumarr@gmail.com", cls: '' },
+        { text: "", cls: '' },
+        { text: "For contract work via RamTech Solutions:", cls: '' },
+        { text: "\ud83c\udf10 ramtech.solutions", cls: '' }
+      ],
+    who: () => [
+        { text: "Sriram Kumar Tentu is a Backend & Cloud Engineer, Founder, and Researcher.", cls: '' },
+        { text: "", cls: '' },
+        { text: "\ud83d\udd27 7+ years building production systems \u2014 FastAPI, AWS, React, Unity 3D", cls: '' },
+        { text: "\ud83c\udfe2 Founded RamTech Solutions (US) and TenTwo Technologies (India)", cls: '' },
+        { text: "\ud83c\udf93 M.S. CS from Oklahoma State University", cls: '' },
+        { text: "\ud83d\udcc4 Research publications and conference contributions across IEEE, Springer, ASHA & ProQuest", cls: '' },
+        { text: "\ud83c\udf99\ufe0f Built FluentLoop \u2014 AI speech therapy platform", cls: '' },
+        { text: "\ud83d\udccd Based in Oklahoma City, OK", cls: '' }
+      ],
+    vr: () => [
+        { text: "Sriram is an XR/VR specialist:", cls: '' },
+        { text: "", cls: '' },
+        { text: "\ud83e\udd7d 5 VR applications built in Unity for Oculus Quest, HTC Vive, and HoloLens 2", cls: '' },
+        { text: "\ud83c\udf93 MS thesis on VR for stuttering therapy \u2014 45% fluency improvement", cls: '' },
+        { text: "\ud83c\udfc6 Best Outstanding Poster at IEEE SeGAH 2024 (Funchal, Portugal)", cls: '' },
+        { text: "\ud83d\udd2c Research at OSU's Stuttering Research Lab and Center for Cyber-Physical Systems", cls: '' },
+        { text: "\ud83d\udcc4 Multiple publications on VR/AR, digital twins, healthcare, and stuttering research", cls: '' }
+      ],
+    argencis: () => [
+        { text: "Sriram works at Argencis Medical in Oklahoma City as an IT Support Specialist (2026 to now).", cls: '' },
+        { text: "", cls: '' },
+        { text: "He also built their DME platform: HIPAA-compliant order tracking serving 400+ clinics, built with React, FastAPI, DynamoDB and AWS EC2.", cls: '' }
+      ],
+    boeing: () => [
+        { text: "Sriram was a Python Developer at The Boeing Company (2025 to 2026), working remotely from Oklahoma City.", cls: '' },
+        { text: "", cls: '' },
+        { text: "Before that he was a Lab Consultant and Research Assistant at Oklahoma State University.", cls: '' }
+      ],
+    ramtech: () => [
+        { text: "RamTech Solutions LLC is Sriram's US company, founded 2025 in Oklahoma City (E-Verified).", cls: '' },
+        { text: "", cls: '' },
+        { text: "It builds websites and web platforms for small businesses. Launch offer: a full 5-page business website for $99 for the first 3 clients. Grab a spot at ramtech.solutions/form", cls: '' }
+      ],
+    tentwo: () => [
+        { text: "TenTwo Technologies Private Limited is Sriram's India company, a registered Private Limited company.", cls: '' },
+        { text: "", cls: '' },
+        { text: "It offers web development and ran a paid internship program in 2026. Launch offer for India: a full business website at \\u20b94,999 for the first 3 clients, via tentwotechnologies.com/form", cls: '' }
+      ],
+    internship: () => [
+        { text: "In May to June 2026 TenTwo ran a paid internship program with tracks in Python, AI and Data Science, Full Stack and DevOps.", cls: '' },
+        { text: "", cls: '' },
+        { text: "Want in on a future cohort? Reach out at sriram@tentwotechnologies.com", cls: '' }
+      ],
+    thesis: () => [
+        { text: "Sriram's M.S. thesis at Oklahoma State University studied the impact of virtual reality, connected to his speech therapy research at OSU's Stuttering Research Lab.", cls: '' },
+        { text: "", cls: '' },
+        { text: "It is published on ProQuest.", cls: '' }
+      ],
+    mba: () => [
+        { text: "Sriram earned his MBA from KL University, India (2024 to 2026), alongside his M.S. in Computer Science from Oklahoma State University (2022 to 2024).", cls: '' }
+      ],
+    telugu: () => [
+        { text: "Sriram speaks English and Telugu.", cls: '' }
+      ],
+    speaking: () => [
+        { text: "Sriram has presented at conferences across three countries, including IEEE SeGAH 2024 in Funchal, Madeira, Portugal, where he won the Best Poster Award.", cls: '' }
+      ],
+    testimonial: () => [
+        { text: "People Sriram has worked with praise his reliability and speed. You can read the full testimonials in the Testimonials section of this page.", cls: '' }
+      ],
+    journey: () => [
+        { text: "Sriram started as a web app pentester in India (2020), moved to the US for his M.S. at Oklahoma State, did VR and speech research, worked at Boeing, and now runs two companies: RamTech Solutions in the US and TenTwo Technologies in India.", cls: '' }
+      ],
+    currently: () => [
+        { text: "Right now Sriram is shipping: Argencis Phase 2 (DME platform), the $99 / \\u20b94,999 website launch offer for his first clients, and the Tuberose & Co Amazon India product launch.", cls: '' }
+      ],
+    learning: () => [
+        { text: "Currently exploring: AI and machine learning (LangChain, prompt engineering, Whisper fine-tuning) and deeper cloud architecture.", cls: '' }
+      ],
+    tuberose: () => [
+        { text: "Tuberose & Co is Sriram's Amazon India brand. It started with imitation jewelry and is now launching beauty tools: a rose quartz gua sha ritual kit and a facial ice roller.", cls: '' }
+      ],
+    movingtoindia: () => [
+        { text: "Yes, Sriram is moving to India in the next few months to run TenTwo Technologies full time. He will be based in Andhra Pradesh.", cls: '' }
+      ],
+    easteregg: () => [
+        { text: "This site hides a few secrets: open the terminal and type help, try the Konami code (up up down down left right left right B A), or play the parking game in the Lab section.", cls: '' }
+      ],
+    blog: () => [
+        { text: "Sriram writes on the TenTwo blog at tentwotechnologies.com/blog, covering internships, freelancing vs teams, and building products.", cls: '' }
+      ],
+    thank: () => [
+        { text: "You are welcome! Anything else you want to know about Sriram?", cls: '' }
+      ],
+    howareyou: () => [
+        { text: "Doing great, thanks for asking! I am Sriram's AI assistant. What would you like to know about him?", cls: '' }
+      ],
+    resume: () => [
+        { text: "You can download Sriram's resume with the Download Resume button at the top of this page.", cls: '' }
+      ],
+    website: () => [
+        { text: "Yes! Sriram builds business websites.", cls: '' },
+        { text: "", cls: '' },
+        { text: "Launch offer (first 3 clients):", cls: '' },
+        { text: "- US: $99 via RamTech Solutions LLC, form at ramtech.solutions/form", cls: '' },
+        { text: "- India: \u20b94,999 via TenTwo Technologies, form at tentwotechnologies.com/form", cls: '' },
+        { text: "", cls: '' },
+        { text: "5 pages, mobile-ready, live in 3 to 5 days. Fill the form and he will get back to you.", cls: '' }
+      ],
+
     clear: () => { output.innerHTML = ''; return []; },
   };
 
@@ -6329,6 +6506,9 @@ function showToast() {
       if (lines) lines.forEach(l => addLine(l.text, l.cls));
     } else {
       addLine(`command not found: ${c}`, 'error');
+      let _bn = null, _bd = 99;
+      for (const _n of Object.keys(COMMANDS)) { const _d = tlev(c, _n); if (_d < _bd) { _bd = _d; _bn = _n; } }
+      if (_bn && _bd <= 2) { addLine(`did you mean '${_bn}'? running it...`, 'amber'); const _ls = COMMANDS[_bn](); if (_ls) _ls.forEach(l => addLine(l.text, l.cls)); } else
       addLine('type "help" for available commands', 'muted');
     }
     addLine('');
@@ -7180,6 +7360,16 @@ function lev(a, b) {
     if (score > bestScore) { bestScore = score; best = qa; }
   }
   if (best && bestScore > 0) return best.answer;
+  if (!best) {
+    const words = lc.split(/[^a-z]+/).filter(w => w.length > 3);
+    let b2 = null, s2 = 0;
+    for (const qa of chatQA) {
+      const at = qa.answer.toLowerCase();
+      let s = 0; for (const w of words) if (at.includes(w)) s++;
+      if (s > s2) { s2 = s; b2 = qa; }
+    }
+    if (b2 && s2 >= 2) return b2.answer;
+  }
   return `Hmm, not sure about that.\n\nTry asking about:\n• Skills & tech stack\n• Work experience & companies\n• Projects (Argencis, FluentLoop, etc.)\n• Research & publications\n• Education (OSU, KL University)\n• How to contact Sriram\n• Availability for hire`;
 }
 
