@@ -4970,7 +4970,6 @@ section + .spotlight-section::before {
           <span class="key-badge">📱 Touch to swipe</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -4984,11 +4983,13 @@ section + .spotlight-section::before {
       <!-- Lamp on the right side now, form on left -->
       <div class="lamp-contact-form" id="lampForm">
         <h4>send a message</h4>
-        <form id="lcf-form" action="https://formspree.io/f/xzzbnwqk" method="POST" onsubmit="submitLampForm(event)">
+        <form id="lcf-form" action="https://formspree.io/f/mzdwnkkn" method="POST" onsubmit="submitLampForm(event)">
           <div class="lcf-field"><label>name</label><input type="text" name="name" placeholder="Your name" required /></div>
           <div class="lcf-field"><label>email</label><input type="email" name="email" placeholder="your@email.com" required /></div>
           <div class="lcf-field"><label>message</label><textarea name="message" rows="3" placeholder="What's on your mind?" required></textarea></div>
           <input type="hidden" name="_subject" value="New message from sriramtentu.com" />
+          <input type="hidden" name="Form Source" value="sriramtentu.com" />
+          
           <button type="submit" class="lcf-submit" id="lcf-btn">send message</button>
         </form>
         <div id="lcf-success" style="display:none;text-align:center;padding:16px 0;">
