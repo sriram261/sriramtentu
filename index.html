@@ -3434,7 +3434,7 @@ section + .spotlight-section::before {
 /* Scroll speedometer */
 #speedometer {
   position: fixed;
-  bottom: 88px;
+  bottom: 24px;
   left: 24px;
   width: 90px;
   height: 90px;
@@ -3832,15 +3832,15 @@ section + .spotlight-section::before {
 #chat-send svg { width: 16px; height: 16px; color: var(--bg); }
 @media (max-width: 700px) {
   #chat-widget { width: calc(100vw - 32px); right: 16px; bottom: 76px; }
-  #speedometer { left: 16px; bottom: 88px; }
+  #speedometer { left: 16px; bottom: 16px; }
 }
 
 </style>
 <style> /* ===== WEBSITE OFFER + MERGED BLOCKS ===== */
 .merged-block{margin-top:56px}.merged-title{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-bottom:24px}.merged-title::before{content:'> ';color:var(--term)}
-#services-fab{position:fixed;left:24px;bottom:24px;z-index:900;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--term);background:rgba(6,9,6,.88);border:1px solid rgba(110,231,135,.45);border-radius:999px;padding:13px 22px;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(0,0,0,.45);transition:transform .2s,box-shadow .2s,border-color .2s}
+#services-fab{position:fixed;right:24px;top:96px;z-index:900;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--term);background:rgba(6,9,6,.88);border:1px solid rgba(110,231,135,.45);border-radius:999px;padding:13px 22px;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(0,0,0,.45),0 0 22px rgba(110,231,135,.40);transition:transform .2s,box-shadow .2s,border-color .2s}
 #services-fab:hover{transform:translateY(-2px);border-color:var(--term);box-shadow:0 8px 28px rgba(110,231,135,.28)}
-@media(max-width:640px){#services-fab{left:16px;bottom:16px;padding:11px 18px;font-size:11px}}
+@media(max-width:640px){#services-fab{left:auto;bottom:auto;right:16px;top:80px;padding:11px 18px;font-size:11px}}
 /* scroll fixes: chat + terminal */
 /* writing / faq / newsletter */
 .writing-section,.faq-section,.newsletter-section{padding:90px 0}
