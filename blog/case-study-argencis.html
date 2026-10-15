@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Case study: replacing spreadsheets with a platform for 400+ clinics — Sriram Kumar Tentu</title>
+<meta name="description" content="How I built the Argencis DME order tracking platform: HIPAA-aware, FastAPI and DynamoDB, replacing a manual Google Sheets workflow used by 400+ referral sources."/>
+<link rel="canonical" href="https://sriramtentu.com/blog/case-study-argencis.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Case study: replacing spreadsheets with a platform for 400+ clinics"/>
+<meta property="og:description" content="How I built the Argencis DME order tracking platform: HIPAA-aware, FastAPI and DynamoDB, replacing a manual Google Sheets workflow used by 400+ referral sources."/>
+<meta property="og:url" content="https://sriramtentu.com/blog/case-study-argencis.html"/>
+<meta property="og:image" content="https://sriramtentu.com/og-preview.png"/>
+<meta name="author" content="Sriram Kumar Tentu"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5R75Y262G"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-X5R75Y262G');
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"Case study: replacing spreadsheets with a platform for 400+ clinics","author":{"@type":"Person","name":"Sriram Kumar Tentu","url":"https://sriramtentu.com/"},"datePublished":"2026-10-15","publisher":{"@type":"Person","name":"Sriram Kumar Tentu"},"description":"How I built the Argencis DME order tracking platform: HIPAA-aware, FastAPI and DynamoDB, replacing a manual Google Sheets workflow used by 400+ referral sources.","mainEntityOfPage":"https://sriramtentu.com/blog/case-study-argencis.html"}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060906;color:#d4dcd5;font-family:'JetBrains Mono',ui-monospace,monospace;line-height:1.8;padding:0 20px;max-width:720px;margin:0 auto}
+a{color:#6ee787}
+header{padding:28px 0;border-bottom:1px solid #1c241c;margin-bottom:32px}
+header a{text-decoration:none;font-size:13px}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.25;color:#f2f6f2;margin:14px 0 8px;letter-spacing:-0.02em}
+.date{color:#5a645c;font-size:13px;margin-bottom:28px}
+p{margin-bottom:20px;font-size:15px}
+h2{color:#6ee787;font-size:19px;margin:32px 0 12px}
+ul{margin:0 0 20px 18px;font-size:15px}
+li{margin-bottom:8px}
+blockquote{border-left:3px solid #d4a85a;padding:6px 0 6px 18px;margin:24px 0;color:#e8f0e9;font-size:15px}
+blockquote .who{display:block;margin-top:8px;font-size:12.5px;color:#d4a85a}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 22px}
+.stack span{border:1px solid #1c241c;border-radius:999px;padding:3px 12px;font-size:12px;color:#9fb3a1}
+.result{background:#0b110c;border:1px solid rgba(110,231,135,.25);border-radius:12px;padding:20px;margin:28px 0;font-size:15px}
+footer{margin:48px 0 32px;padding-top:20px;border-top:1px solid #1c241c;font-size:13px;color:#5a645c}
+.cta{background:#0b110c;border:1px solid rgba(110,231,135,.25);border-radius:12px;padding:20px;margin:32px 0}
+.cta a{font-weight:700}
+</style>
+</head>
+<body>
+<header><a href="/">← sriramtentu.com</a></header>
+
+<h1>Case study: replacing spreadsheets with a platform for 400+ clinics</h1>
+<div class="date">Oct 15, 2026 · Case study</div>
+
+<h2>The problem</h2>
+<p>Argencis is a durable medical equipment (DME) provider. Its order tracking ran on a manual Google Sheets workflow, shared across more than 400 referral sources. Every order meant rows typed by hand, status updates chased by phone, and no single place where anyone could answer a simple question: where is this order?</p>
+<p>Spreadsheets are fine until they are the system. At 400+ referral sources, they were the bottleneck.</p>
+
+<h2>What I built</h2>
+<p>A HIPAA-aware order tracking platform, built from scratch and running in production:</p>
+<ul>
+<li>Order tracking dashboard with live status for every order</li>
+<li>CSV ingestion from Brightree, the system referral sources already use</li>
+<li>Masking rules so sensitive patient data only shows where it should</li>
+<li>SMS notifications as orders move</li>
+<li>Sign-in and access control with AWS Cognito</li>
+</ul>
+<div class="stack"><span>React</span><span>FastAPI</span><span>DynamoDB</span><span>AWS EC2</span><span>Cognito</span></div>
+
+<h2>The result</h2>
+<div class="result">The manual spreadsheet workflow is gone. The platform is the system of record for 400+ clinics and referral sources, and it is still growing: Phase 2 adds a physician filter and an advanced analytics dashboard.</div>
+
+<blockquote>&ldquo;Sriram built our entire order tracking platform from scratch, replacing a manual workflow used by 400 clinics. Delivered clean, production-ready code with zero hand-holding. One of the most reliable engineers I have worked with.&rdquo;<span class="who">Trey Starr, CMO, Argencis</span></blockquote>
+
+<div class="cta">Want a system like this for your business? I build websites and platforms for a <a href="https://sriramtentu.com/#websites">$99 launch price</a> for the first 3 US clients.</div>
+
+<footer>Written by Sriram Kumar Tentu · <a href="/">home</a> · <a href="https://sriramtentu.com/#websites">get a website</a></footer>
+</body>
+</html>
