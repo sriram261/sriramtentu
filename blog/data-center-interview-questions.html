@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Data Center Technician Interview Questions: 25 Questions, Answered Like a Tech | Sriram Kumar Tentu</title>
+<meta name="description" content="The 25 questions I prepared for L2 data center technician interviews, with the answers hiring managers actually want: fiber, power, cooling, troubleshooting, and process."/>
+<link rel="canonical" href="https://sriramtentu.com/blog/data-center-interview-questions.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="From a thesis on stuttering to companies on two continents"/>
+<meta property="og:description" content="How I got here: landing in the US in 2022, a VR stuttering thesis at Oklahoma State, companies in America and India, and a healthcare platform in between."/>
+<meta property="og:url" content="https://sriramtentu.com/blog/data-center-interview-questions.html"/>
+<meta property="og:image" content="https://sriramtentu.com/og-preview.png"/>
+<meta name="author" content="Sriram Kumar Tentu"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5R75Y262G"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-X5R75Y262G');
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"From a thesis on stuttering to companies on two continents","author":{"@type":"Person","name":"Sriram Kumar Tentu","url":"https://sriramtentu.com/"},"datePublished":"2026-10-15","publisher":{"@type":"Person","name":"Sriram Kumar Tentu"},"description":"How I got here: landing in the US in 2022, a VR stuttering thesis at Oklahoma State, companies in America and India, and a healthcare platform in between.","mainEntityOfPage":"https://sriramtentu.com/blog/data-center-interview-questions.html"}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060906;color:#d4dcd5;font-family:'JetBrains Mono',ui-monospace,monospace;line-height:1.8;padding:0 20px;max-width:720px;margin:0 auto}
+a{color:#6ee787}
+header{padding:28px 0;border-bottom:1px solid #1c241c;margin-bottom:32px}
+header a{text-decoration:none;font-size:13px}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.25;color:#f2f6f2;margin:14px 0 8px;letter-spacing:-0.02em}
+.date{color:#5a645c;font-size:13px;margin-bottom:28px}
+p{margin-bottom:20px;font-size:15px}
+h2{color:#6ee787;font-size:19px;margin:32px 0 12px}
+footer{margin:48px 0 32px;padding-top:20px;border-top:1px solid #1c241c;font-size:13px;color:#5a645c}
+.cta{background:#0b110c;border:1px solid rgba(110,231,135,.25);border-radius:12px;padding:20px;margin:32px 0}
+.cta a{font-weight:700}
+</style>
+</head>
+<body>
+<header><a href="/">← sriramtentu.com</a></header>
+<h1>Data Center Technician Interview Questions: 25 Questions, Answered Like a Tech</h1>
+<div class="date">October 15, 2026 · From my own L2 interview preparation</div>
+<p>I spent the last month applying for L2 data center technician roles, and I prepared the way I do everything: I wrote it all down. These are the 25 questions I drilled, with the answers I would give in the room. If you are preparing for the same interviews, steal them. If you are hiring, this is how I think about the work.</p>
+<p>One pattern runs through every answer: physical layer first, labels always, and never guess in a live environment. Interviewers are listening for that discipline more than for any single fact.</p>
+
+<h2>1. Cabling & Connectivity</h2>
+<h3>Q1. Single-mode vs multi-mode fiber , what's the difference and when do you use each?</h3>
+Single-mode (OS2) uses one light path, goes kilometers , for long-haul, campus backbone, and carrier links. Multi-mode (OM3/OM4/OM5) is cheaper, for short runs inside the data center (up to ~300-550m). Rule of thumb: inside the building = multi-mode; between buildings = single-mode. Never mix them on the same link.
+<h3>Q2. What fiber connector types have you worked with?</h3>
+LC (most common, small form factor, duplex), SC (older, push-pull), and MPO/MTP (multi-fiber, 12/24 strand for 40/100G). On the equipment side: SFP, SFP+, QSFP transceivers. I always verify the transceiver matches the fiber type , e.g., don't plug a single-mode optic into multi-mode fiber.
+<h3>Q3. Cat5e vs Cat6 vs Cat6a , when does it matter?</h3>
+Cat5e: 1 Gbps to 100m. Cat6: 10 Gbps but only to 55m. Cat6a: 10 Gbps to the full 100m, better shielding. For new data center copper runs, I spec Cat6a. Keep copper runs under 90m horizontal plus patch cords (100m total channel). And never run copper parallel to power , EMI kills throughput.
+<h3>Q4. How do you certify a fiber run after installing it?</h3>
+<ul style="margin:6px 0 12px;padding-left:20px"><li>Visual check first: inspect end-faces with a fiber scope , dirty connectors are the #1 cause of failures. Clean with proper wipes/click cleaners.</li><li>Test with a light source and power meter (or OLTS) to measure insertion loss against the loss budget.</li><li>For longer/troubled runs, OTDR to find breaks, bends, and bad splices by distance.</li><li>Document the readings per TIA-606 labeling so the next tech isn't guessing.</li></ul>
+<h3>Q5. A link is up but throwing CRC errors. What do you do?</h3>
+Work layer by layer: (1) Check interface counters and error rate , is it constant or bursty? (2) Reseat and clean both ends of the fiber/copper. (3) Swap the patch cord , it's the cheapest suspect. (4) Swap the transceiver with a known-good one. (5) Check for speed/duplex mismatch (copper) or a bent fiber (macro-bends spike loss). (6) If it persists, OTDR the run. I fix physical layer first because 90% of these are physical.
+
+<h2>2. Rack, Power & Cooling</h2>
+<h3>Q6. Walk me through racking and stacking a new server.</h3>
+<ul style="margin:6px 0 12px;padding-left:20px"><li>Verify the rack location, U-space, and that rails match the server model.</li><li>Install rails, slide the server in, secure it.</li><li>Connect redundant power to <em>separate</em> PDUs/A-B feeds , never both PSUs to one PDU.</li><li>Cable network per the port map, dress cables with velcro (never zip ties on fiber), leave service loops.</li><li>Label everything both ends per TIA-606 before closing the ticket.</li><li>Power on, verify POST, confirm remote access (iDRAC/iLO), hand off to the remote team.</li></ul>
+<h3>Q7. Why does labeling matter? What standard do you follow?</h3>
+TIA-606. In a live environment with hundreds of identical cables, an unlabeled cable is a future outage , someone will unplug the wrong one during a change window. I label both ends of every cable with source and destination (rack/U/port), plus power whips. It takes 30 seconds now and saves hours later.
+<h3>Q8. How do you plan power for a rack?</h3>
+Add up nameplate draw of all equipment, keep it under 80% of the circuit rating (continuous-load rule). Verify single-phase vs three-phase PDU, and balance load across phases. A and B feeds must each be able to carry the full load alone , that's the point of redundancy. I check PDU metering after install to confirm actual draw vs plan.
+<h3>Q9. Hot aisle / cold aisle , explain it.</h3>
+Racks face front-to-front (cold aisle, where cool air is supplied) and back-to-back (hot aisle, where exhaust goes). Equipment must be mounted facing the cold aisle. Blanking panels fill empty U-space so hot air doesn't recirculate to the front. Reversing one server can create a hotspot , I check airflow direction on every install.
+<h3>Q10. What's the difference between AC and DC power in a data center?</h3>
+Most enterprise gear runs on AC from UPS-backed PDUs. Telco and some large-scale facilities use -48V DC plant. As a field tech I mainly deal with AC PDUs, but I always confirm the power type before connecting anything , plugging AC gear into DC (or vice versa) destroys equipment.
+
+<h2>3. Working in Live Environments</h2>
+<h3>Q11. What precautions do you take before working in a live cabinet?</h3>
+<ul style="margin:6px 0 12px;padding-left:20px"><li>Review the change ticket and MOP (method of procedure) , know exactly what's in scope.</li><li>Identify A/B power feeds and what's redundant before touching anything.</li><li>ESD strap on, grounded.</li><li>Confirm labeling so I never unplug the wrong cable , trace before you touch.</li><li>Have a rollback plan: know what "undo" looks like if something goes wrong.</li></ul>
+<h3>Q12. What is lockout/tagout and when does it apply?</h3>
+LOTO = physically locking an energy source in the safe position and tagging it so no one re-energizes it while work is in progress. Applies to electrical panels, UPS maintenance bypasses, and any high-energy work. In field tech work it comes up most during PDU replacement or breaker-panel work , I never trust a breaker position without verifying zero energy with a meter.
+<h3>Q13. You find unlabeled cables in a production rack during a change window. What do you do?</h3>
+Stop and trace first , I never pull an unlabeled cable in production. Use a toner/tracer on copper, or check link lights and interface descriptions on fiber. If I can't positively identify it, I escalate rather than guess. Then I label everything I touched so the next person doesn't face the same problem.
+
+<h2>4. Troubleshooting Scenarios</h2>
+<h3>Q14. You just installed a server and it's unreachable on the network. Steps?</h3>
+<ul style="margin:6px 0 12px;padding-left:20px"><li>Physical: link lights on NIC and switch port? Cable seated? Right port per the port map?</li><li>Switch side: is the port enabled, correct VLAN, any err-disable?</li><li>Power: did it actually POST? Check iDRAC/iLO separately , management may be up while data plane isn't.</li><li>If link is up but no traffic: verify IP config, gateway, and that the upstream port isn't blocked.</li><li>Document each check , don't change three things at once.</li></ul>
+<h3>Q15. An entire rack loses power. What do you check?</h3>
+<ul style="margin:6px 0 12px;padding-left:20px"><li>Safety first , check for burning smell, tripped breakers, UPS alarms before touching anything.</li><li>Are both A and B feeds down, or just one? (If one, redundancy should have held , find out why it didn't.)</li><li>Check the rack PDUs, then upstream breakers, then UPS/ATS status.</li><li>Look for what changed recently , new equipment overloading a circuit is a classic cause.</li><li>Restore per priority, verify each device comes up clean, and write up the root cause.</li></ul>
+<h3>Q16. Intermittent link flaps on a production connection. How do you approach it?</h3>
+Intermittent usually = physical. Check: loose connector, damaged cable (kinks, tight bends, crushed under a tile), dirty fiber end-face, failing transceiver (check DOM/DDM readings for temperature and power levels), or EMI on copper runs near power. I correlate flap times with any environmental events (cleaning crews, maintenance windows). Replace cheapest components first: patch cord, then optic.
+<h3>Q17. A remote engineer asks you to "just unplug the blue cable." How do you respond?</h3>
+"There are six blue cables in this rack , can you confirm the exact label or port?" I never act on color or vague descriptions in production. I read back the full label (rack/U/port) before touching anything, and I confirm the expected impact. Remote hands mistakes cause outages; verification is the job.
+
+<h2>5. Documentation, Ticketing & Process</h2>
+<h3>Q18. What do you document after completing an install?</h3>
+Rack and U positions, asset/serial numbers, power connections (which PDU/outlet, A/B), network port mapping (switch, port, VLAN), cable labels, test results (loss readings, link speed), photos of the finished rack, and any deviations from the plan. The next tech should be able to reconstruct the whole install from my ticket notes.
+<h3>Q19. How do you prioritize when you have five tickets and they're all "urgent"?</h3>
+Production impact first: anything affecting live customer traffic beats a new install. Then by SLA deadline, then by dependency (unblock others first). I communicate ETAs on the tickets I'm deferring , silence is what makes people escalate. If two are truly equal, I ask the lead rather than guess.
+<h3>Q20. What's a MOP and why does it matter?</h3>
+Method of Procedure , the step-by-step plan for a change, including scope, sequence, verification steps, and rollback. It matters because in a live data center, improvisation causes outages. I follow the MOP exactly, and if reality doesn't match the MOP, I stop and escalate instead of freelancing.
+
+<h2>6. Field Realities & Behavioral</h2>
+<h3>Q21. This role involves heavy travel and working independently at remote sites. How do you handle that?</h3>
+I'm comfortable with it , field work suits me because I'm self-directed. I plan my site visits in advance (tools, spares, tickets, site contacts), I over-communicate status since no one's watching over my shoulder, and I keep my documentation tight because the next person on site depends on it. Travel doesn't bother me; being unprepared does.
+<h3>Q22. Tell me about a time you made a mistake in a live environment.</h3>
+(Use a real or realistic example.) "Early on, I misread a cable label during a re-patch and dropped a redundant link. The network stayed up on the other path, but it taught me my rule: trace before you touch, read the label out loud, and never rush a change window. I haven't repeated it since." , Show the lesson, not just the mistake.
+<h3>Q23. A site contact pressures you to skip the MOP and "just get it done." What do you do?</h3>
+Politely decline and explain why: the MOP exists to protect their production environment, and skipping steps is how outages happen. I offer to escalate to my lead if they want the procedure changed , but I don't freelance on someone else's live infrastructure. Safety and process win over speed, every time.
+<h3>Q24. How do you stay safe working alone at a site at night?</h3>
+I follow the site's access and lone-worker procedures, keep my lead informed of my location and expected done-time, keep emergency contacts and the site's emergency numbers on hand, and I don't take shortcuts on electrical safety just because no one's watching. If something feels unsafe, I stop work , no ticket is worth an injury.
+<h3>Q25. Why do you want this L2 role?</h3>
+"I like work where I can see the result , a rack that's cabled clean, labeled right, and passing traffic. I've got the hands-on foundation, and I want to do it at scale in real data center environments. TLX's project-based field work is exactly the kind of experience that builds a career in infrastructure."
+
+<h2>How to use this list</h2>
+<p>Do not memorize the answers word for word. Interviewers can hear a memorized script. Learn the reasoning, then say it in your own words with one real example from your own racks. The techs who get hired sound like people who have already done the job carefully, because careful is the whole job.</p>
+<p>My own background: 4+ years across data center engineering and operations, currently a Senior L2 Data Center Technician. My full story is in <a href="/blog/the-journey.html">the journey post</a>, and my resume is on the <a href="/">homepage</a>.</p>
+<div class="cta">
+<a class="btn" href="/">Back to home</a>
+<a class="btn alt" href="/blog/the-journey.html">Read the journey</a>
+</div>
+<footer>Written by Sriram Kumar Tentu · <a href="/">home</a> · <a href="https://sriramtentu.com/#websites">get a website</a></footer>
+</body>
+</html>
