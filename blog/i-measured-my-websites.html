@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>I Measured My Websites, Then Cut One From 3.9 MB to 213 KB | Sriram Kumar Tentu</title>
+<meta name="description" content="I put analytics on all three of my company websites in one day, read the speed reports honestly, and cut my company homepage from 3.9 MB to 213 KB. Here is what the numbers said."/>
+<link rel="canonical" href="https://sriramtentu.com/blog/i-measured-my-websites.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="From a thesis on stuttering to companies on two continents"/>
+<meta property="og:description" content="How I got here: landing in the US in 2022, a VR stuttering thesis at Oklahoma State, companies in America and India, and a healthcare platform in between."/>
+<meta property="og:url" content="https://sriramtentu.com/blog/i-measured-my-websites.html"/>
+<meta property="og:image" content="https://sriramtentu.com/og-preview.png"/>
+<meta name="author" content="Sriram Kumar Tentu"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X5R75Y262G"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-X5R75Y262G');
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"From a thesis on stuttering to companies on two continents","author":{"@type":"Person","name":"Sriram Kumar Tentu","url":"https://sriramtentu.com/"},"datePublished":"2026-10-15","publisher":{"@type":"Person","name":"Sriram Kumar Tentu"},"description":"How I got here: landing in the US in 2022, a VR stuttering thesis at Oklahoma State, companies in America and India, and a healthcare platform in between.","mainEntityOfPage":"https://sriramtentu.com/blog/i-measured-my-websites.html"}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060906;color:#d4dcd5;font-family:'JetBrains Mono',ui-monospace,monospace;line-height:1.8;padding:0 20px;max-width:720px;margin:0 auto}
+a{color:#6ee787}
+header{padding:28px 0;border-bottom:1px solid #1c241c;margin-bottom:32px}
+header a{text-decoration:none;font-size:13px}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.25;color:#f2f6f2;margin:14px 0 8px;letter-spacing:-0.02em}
+.date{color:#5a645c;font-size:13px;margin-bottom:28px}
+p{margin-bottom:20px;font-size:15px}
+h2{color:#6ee787;font-size:19px;margin:32px 0 12px}
+footer{margin:48px 0 32px;padding-top:20px;border-top:1px solid #1c241c;font-size:13px;color:#5a645c}
+.cta{background:#0b110c;border:1px solid rgba(110,231,135,.25);border-radius:12px;padding:20px;margin:32px 0}
+.cta a{font-weight:700}
+</style>
+</head>
+<body>
+<header><a href="/">← sriramtentu.com</a></header>
+<h1>I Measured My Websites, Then Cut One From 3.9 MB to 213 KB</h1>
+<div class="date">October 15, 2026 · Building in public, week one</div>
+<p>Until today, I had no idea how many people visited my websites. Not roughly. At all. I would post on LinkedIn, get some likes, and assume the sites were doing their job. That is not measurement, that is hope.</p>
+<p>So today I installed Google Analytics on all three of my sites, sriramtentu.com, ramtech.solutions, and tentwotechnologies.com, into one property I called Sriram Websites, and added all three to Google Search Console. Then I ran speed tests. The numbers were not flattering.</p>
+<h2>What the speed test said</h2>
+<p>My portfolio scored 66 out of 100 on mobile. Slow, not shameful. The TenTwo homepage scored 42, and when I looked at why, the answer was embarrassing: the page itself was 3.9 megabytes. Over months of edits, every image had been pasted directly into the page as text, so a visitor's phone had to download the pictures as part of the page code, every single visit, with no caching.</p>
+<p>The worst single image was 1.5 megabytes. It is now a 93 KB WebP file. The whole homepage is 213 KB, about one eighteenth of what it was, and its score climbed to 52. My portfolio went from 66 to 67 after I compressed a profile photo that was 272 KB being displayed at the size of a postage stamp. It is 37 KB now.</p>
+<h2>What I actually learned</h2>
+<p>First, you cannot improve what you refuse to look at. I have strong opinions about my websites and zero data behind most of them. That ends now: every Monday I will read the week's numbers, visitors, sources, search queries, form submissions, and write down what they say before I change anything.</p>
+<p>Second, the biggest wins were not clever. Nobody needed a redesign. The sites needed someone to weigh them, find the one stupid heavy thing, and fix it. Most performance work is like that, and most business problems are too.</p>
+<p>Third, 52 is still not a good score, and I am not going to pretend otherwise. What remains is render blocking, the order in which files load, which is a deeper rebuild. It goes on the list, behind the work that brings in clients. A fast site nobody visits is worth less than a decent site that ranks, gets shared, and converts. Speed is one lever, not the machine.</p>
+<h2>The machine, from here</h2>
+<p>The machine is: publish something real every week, measure what it does, fix the biggest problem the numbers show, repeat. This post is week one. The analytics are live, the baseline is recorded (66 and 42, before), and next Monday's numbers will be the first honest report card.</p>
+<p>If you run a small business site and have never weighed it, do it today. The test is free at PageSpeed Insights, and the heaviest thing on your page is probably as dumb as mine was.</p>
+<div class="cta">
+<a class="btn" href="/">Back to home</a>
+<a class="btn alt" href="/blog/data-center-interview-questions.html">The interview questions post</a>
+</div>
+<footer>Written by Sriram Kumar Tentu · <a href="/">home</a> · <a href="https://sriramtentu.com/#websites">get a website</a></footer>
+</body>
+</html>
