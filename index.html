@@ -3933,6 +3933,41 @@ gtag('config', 'G-X5R75Y262G');
 .lab-cta{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted)}
 .lab-cta a{color:var(--term)}
 </style>
+<style>
+/* ===== Swarm Rebuild effect (v19) ===== */
+#swarmLayer{position:fixed;inset:0;z-index:8500;pointer-events:none;overflow:hidden;opacity:1;transition:opacity .6s ease}
+#swarmLayer.swarm-off{opacity:0}
+.swarmCursor{position:absolute;top:0;left:0;width:20px;height:20px;will-change:transform;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
+.swarmCursor svg{display:block}
+.swarmCursor .swarmTag{position:absolute;left:14px;top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.04em;color:#060906;padding:2px 6px;border-radius:6px 8px 8px 8px;white-space:nowrap}
+#swarmBox{position:fixed;z-index:8501;pointer-events:none;border:2px solid #58a6ff;border-radius:4px;opacity:0;transition:opacity .25s ease;box-shadow:0 0 0 1px rgba(88,166,255,.25),0 0 24px rgba(88,166,255,.15) inset}
+#swarmBox.on{opacity:1}
+#swarmBox .swarmHandle{position:absolute;width:9px;height:9px;background:#fff;border:2px solid #58a6ff;border-radius:2px}
+#swarmBox .h-tl{top:-6px;left:-6px}#swarmBox .h-tr{top:-6px;right:-6px}#swarmBox .h-bl{bottom:-6px;left:-6px}#swarmBox .h-br{bottom:-6px;right:-6px}
+#swarmBoxLabel{position:absolute;top:-26px;left:-2px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.06em;color:#fff;background:#58a6ff;padding:3px 8px;border-radius:4px;white-space:nowrap;text-transform:uppercase}
+#swarmHud{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:8600;display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:999px;background:rgba(10,14,12,.82);border:1px solid rgba(110,231,135,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 34px rgba(0,0,0,.5);font-family:'JetBrains Mono',monospace;color:#e6edf3;transition:opacity .5s ease,transform .5s ease;max-width:94vw}
+#swarmHud.swarm-off{opacity:0;transform:translateX(-50%) translateY(18px);pointer-events:none}
+#swarmHud .swarmDots{display:flex;gap:5px}
+#swarmHud .swarmDot{width:9px;height:9px;border-radius:50%;opacity:.45}
+#swarmHud .swarmDot.working{opacity:1;animation:swarmPulse .7s ease-in-out infinite alternate}
+@keyframes swarmPulse{from{transform:scale(1)}to{transform:scale(1.45)}}
+#swarmHud .swarmLayers{font-size:11px;font-weight:700;letter-spacing:.08em;white-space:nowrap}
+#swarmHud .swarmTrack{width:90px;height:4px;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden}
+#swarmHud .swarmFill{height:100%;width:0%;background:#58a6ff;border-radius:2px;transition:width .4s ease,background .4s ease}
+#swarmHud .swarmFill.done{background:#6ee787}
+#swarmHud button{pointer-events:auto;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.05em;color:#060906;background:#6ee787;border:none;border-radius:999px;padding:6px 12px;white-space:nowrap}
+#swarmHud button.swarmGhost{background:transparent;color:#e6edf3;border:1px solid rgba(255,255,255,.3)}
+#swarmHud button:hover{filter:brightness(1.1)}
+body.swarm-hud #speedometer{bottom:82px !important}
+@media (max-width:640px){
+  #swarmHud{gap:8px;padding:8px 10px;bottom:10px}
+  #swarmHud .swarmTrack{width:44px}
+  #swarmHud .swarmLayers{font-size:10px}
+  #swarmHud button{padding:5px 9px;font-size:10px}
+  body.swarm-hud #speedometer{bottom:74px !important}
+}
+
+</style>
 </head>
 <body>
 <!-- Loading Screen -->
@@ -7645,5 +7680,260 @@ document.addEventListener('DOMContentLoaded', function(){
 <style>#waFloat{z-index:9000}@media (max-width:768px){#waFloat{bottom:80px !important;right:16px !important}}@media (max-width:480px){#waFloat{bottom:76px !important;right:14px !important}}</style>
 <a id="waFloat" href="https://wa.me/14057628061?text=Hi%20Sriram%2C%20I%20visited%20your%20website." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" onclick="if(window.gtag){gtag('event','whatsapp_click',{page_location:window.location.href});}" style="display:none;position:fixed;right:24px;bottom:92px;z-index:9999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3);text-decoration:none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="#ffffff" aria-hidden="true"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.8 5 2.3 7L4.7 29l7.3-1.5c1.2.7 2.6 1 4 1 6.6 0 12-5.3 12-11.9S22.6 3 16 3zm0 21.7c-1.2 0-2.4-.3-3.5-.9l-.4-.2-3.9.8.9-3.7-.3-.4a8.6 8.6 0 0 1-1.3-4.4C7.5 10.1 11.3 6.3 16 6.3s8.5 3.8 8.5 8.6S20.7 24.7 16 24.7zm4.6-6.4c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a10.6 10.6 0 0 1-3.1-1.9 11.6 11.6 0 0 1-2.1-2.7c-.2-.4 0-.6.2-.8l.5-.6c.1-.2.2-.3.3-.5v-.5c0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/></svg></a>
 <script>(function(){var b=document.getElementById('waFloat');function t(){if(!b)return;var y=window.scrollY||window.pageYOffset;b.style.display=(y>520)?'flex':'none';}window.addEventListener('scroll',t,{passive:true});t();})();</script>
+<!-- Swarm Rebuild effect (v19) -->
+<div id="swarmLayer" aria-hidden="true"></div>
+<div id="swarmBox" aria-hidden="true"><span id="swarmBoxLabel">Agent &middot; Building</span><span class="swarmHandle h-tl"></span><span class="swarmHandle h-tr"></span><span class="swarmHandle h-bl"></span><span class="swarmHandle h-br"></span></div>
+<div id="swarmHud" role="group" aria-label="Agent build progress">
+  <div class="swarmDots" id="swarmDots"></div>
+  <div class="swarmLayers" id="swarmLayers">LAYERS 0/6</div>
+  <div class="swarmTrack"><div class="swarmFill" id="swarmFill"></div></div>
+  <button type="button" id="swarmTourBtn">Tour</button>
+  <button type="button" id="swarmSpeedBtn" class="swarmGhost">1x</button>
+  <button type="button" id="swarmCloseBtn" class="swarmGhost" aria-label="Dismiss build animation">&times;</button>
+</div>
+
+<script>
+(function(){
+'use strict';
+/* Swarm Rebuild effect (v19): agent cursors build each section as it appears.
+   Plays once per browser session. Force with ?swarm=1. Skips on reduced motion. */
+try{
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { cleanup(); return; }
+  var forced = /[?&]swarm=1/.test(location.search);
+  if (!forced) {
+    try { if (sessionStorage.getItem('swarmSeen')) { cleanup(); return; } } catch(e){}
+  }
+  var layer = document.getElementById('swarmLayer');
+  var box = document.getElementById('swarmBox');
+  var boxLabel = document.getElementById('swarmBoxLabel');
+  var hud = document.getElementById('swarmHud');
+  var dotsWrap = document.getElementById('swarmDots');
+  var layersEl = document.getElementById('swarmLayers');
+  var fillEl = document.getElementById('swarmFill');
+  var tourBtn = document.getElementById('swarmTourBtn');
+  var speedBtn = document.getElementById('swarmSpeedBtn');
+  var closeBtn = document.getElementById('swarmCloseBtn');
+  if (!layer || !box || !hud) return;
+
+  document.body.classList.add('swarm-hud');
+
+  var COLORS = ['#6ee787','#58a6ff','#f778ba','#ffa657','#a371f7','#79c0ff'];
+  var NAMES  = ['A1','A2','A3','A4','A5','A6'];
+  var agents = [];
+  var W = window.innerWidth, H = window.innerHeight;
+  for (var i=0;i<6;i++){
+    var el = document.createElement('div');
+    el.className = 'swarmCursor';
+    el.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24"><path d="M4 2 L20 12 L12.5 13.5 L9 21 Z" fill="'+COLORS[i]+'" stroke="rgba(0,0,0,.35)" stroke-width="1"/></svg><span class="swarmTag" style="background:'+COLORS[i]+'">'+NAMES[i]+'</span>';
+    layer.appendChild(el);
+    var d = document.createElement('span');
+    d.className = 'swarmDot'; d.style.background = COLORS[i];
+    dotsWrap.appendChild(d);
+    agents.push({ el:el, dot:d, x: W/2 + (i-2.5)*46, y: H*0.42 + (i%3)*26, tx:0, ty:0, seed: Math.random()*Math.PI*2 });
+  }
+  function setTargets(cx, cy, spread){
+    for (var j=0;j<agents.length;j++){
+      var a = (j/agents.length)*Math.PI*2 + agents[j].seed*0.15;
+      agents[j].tx = cx + Math.cos(a)*spread;
+      agents[j].ty = cy + Math.sin(a)*spread*0.62;
+    }
+  }
+  setTargets(W/2, H*0.42, 90);
+
+  var mouse = { x: W/2, y: H/2, seen:false };
+  window.addEventListener('mousemove', function(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.seen=true; }, {passive:true});
+
+  var speed = 1, SPEEDS = [1, 1.5, 2, 0.5], speedIdx = 0;
+  var finished = false, flocking = false, currentTarget = null, raf = null;
+
+  function frame(t){
+    for (var j=0;j<agents.length;j++){
+      var ag = agents[j];
+      var wob = flocking ? 0 : Math.sin(t/620 + ag.seed)*7;
+      var dx = (ag.tx + wob) - ag.x, dy = (ag.ty + Math.cos(t/540 + ag.seed)*5) - ag.y;
+      var k = 0.085 * (flocking ? 1.5 : 1);
+      ag.x += dx * k; ag.y += dy * k;
+      ag.el.style.transform = 'translate(' + ag.x.toFixed(1) + 'px,' + ag.y.toFixed(1) + 'px)';
+    }
+    if (currentTarget){
+      var r = currentTarget.getBoundingClientRect();
+      if (r.height > 0){
+        box.style.left = (r.left-4)+'px'; box.style.top = (r.top-4)+'px';
+        box.style.width = (r.width+8)+'px'; box.style.height = (r.height+8)+'px';
+      }
+    }
+    if (flocking && mouse.seen) setTargets(mouse.x, mouse.y, 56);
+    raf = requestAnimationFrame(frame);
+  }
+  raf = requestAnimationFrame(frame);
+
+  function wait(ms){ return new Promise(function(res){ setTimeout(res, ms / speed); }); }
+
+  var SECTIONS = [
+    { id:'top',        label:'HERO' },
+    { id:'about',      label:'ABOUT' },
+    { id:'experience', label:'EXPERIENCE' },
+    { id:'skills',     label:'SKILLS' },
+    { id:'projects',   label:'PROJECTS' },
+    { id:'connect',    label:'CONNECT' }
+  ];
+  var state = {}, layersDone = 0;
+  SECTIONS.forEach(function(s){ state[s.id] = 'pending'; });
+
+  function updateHud(){
+    layersEl.textContent = 'LAYERS ' + layersDone + '/6';
+    fillEl.style.width = (layersDone/6*100) + '%';
+    if (layersDone >= 6) fillEl.classList.add('done');
+  }
+  function setDots(working){
+    for (var j=0;j<agents.length;j++) agents[j].dot.classList.toggle('working', working);
+  }
+
+  function visible(el){
+    var r = el.getBoundingClientRect();
+    return r.width > 130 && r.height > 22;
+  }
+  function blocksFor(sec, id){
+    var picks = [], k;
+    if (id === 'top'){
+      var qs = ['h1', '.hero-actions', '.hero-stats'];
+      for (k=0;k<qs.length;k++){ var q = sec.querySelector(qs[k]); if (q && visible(q)) picks.push(q); }
+    } else {
+      var head = sec.querySelector('.section-title, h2');
+      if (head && visible(head)) picks.push(head);
+      var cont = sec.querySelector('.container') || sec;
+      var kids = cont.children;
+      for (k=0;k<kids.length && picks.length<3;k++){
+        var kid = kids[k];
+        if (picks.indexOf(kid) >= 0) continue;
+        if (kid === head) continue;
+        if (visible(kid) && !kid.contains(head)) picks.push(kid);
+      }
+    }
+    if (!picks.length) picks.push(sec);
+    return picks.slice(0,3);
+  }
+
+  async function buildSection(s){
+    if (state[s.id] !== 'pending' || finished) return;
+    state[s.id] = 'building';
+    var sec = document.getElementById(s.id);
+    if (!sec){ state[s.id]='done'; layersDone++; updateHud(); maybeFinish(); return; }
+    setDots(true);
+    var blocks = blocksFor(sec, s.id);
+    for (var b=0;b<blocks.length;b++){
+      if (finished) return;
+      var blk = blocks[b];
+      blk.scrollIntoView({ block:'nearest', behavior:'auto' });
+      currentTarget = blk;
+      var r = blk.getBoundingClientRect();
+      setTargets(r.left + r.width/2, r.top + r.height/2, Math.max(46, Math.min(150, r.width/2)));
+      boxLabel.textContent = 'Agent · Building ' + s.label;
+      box.classList.add('on');
+      await wait(620);
+    }
+    currentTarget = null;
+    box.classList.remove('on');
+    setDots(false);
+    state[s.id] = 'done';
+    layersDone++; updateHud();
+    maybeFinish();
+  }
+
+  var io = null;
+  if ('IntersectionObserver' in window){
+    io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          var s = SECTIONS.find(function(x){ return x.id === en.target.id; });
+          if (s) buildSection(s);
+        }
+      });
+    }, { threshold: 0.18 });
+    SECTIONS.forEach(function(s){ var el = document.getElementById(s.id); if (el) io.observe(el); });
+  }
+
+  var touring = false;
+  async function tour(){
+    if (touring){ touring = false; tourBtn.textContent = 'Tour'; return; }
+    touring = true; tourBtn.textContent = 'Stop';
+    for (var i=0;i<SECTIONS.length;i++){
+      if (!touring || finished) break;
+      var el = document.getElementById(SECTIONS[i].id);
+      if (!el) continue;
+      el.scrollIntoView({ block:'start', behavior:'smooth' });
+      await wait(750);
+      if (state[SECTIONS[i].id] === 'pending') await buildSection(SECTIONS[i]);
+      await wait(280);
+    }
+    touring = false; tourBtn.textContent = 'Tour';
+  }
+  tourBtn.addEventListener('click', tour);
+  window.addEventListener('wheel', function(){ if (touring){ touring=false; tourBtn.textContent='Tour'; } }, { passive:true });
+  window.addEventListener('touchmove', function(){ if (touring){ touring=false; tourBtn.textContent='Tour'; } }, { passive:true });
+
+  speedBtn.addEventListener('click', function(){
+    speedIdx = (speedIdx + 1) % SPEEDS.length;
+    speed = SPEEDS[speedIdx];
+    speedBtn.textContent = speed + 'x';
+  });
+  closeBtn.addEventListener('click', function(){ finish(true); });
+
+  function maybeFinish(){ if (layersDone >= SECTIONS.length) finish(false); }
+
+  async function finish(manual){
+    if (finished) return;
+    finished = true;
+    if (io) io.disconnect();
+    try { sessionStorage.setItem('swarmSeen','1'); } catch(e){}
+    currentTarget = null;
+    box.classList.remove('on');
+    if (!manual){
+      flocking = true;
+      if (!mouse.seen) setTargets(W/2, H*0.55, 56);
+      setDots(true);
+      await wait(1700);
+      setDots(false);
+    }
+    hud.classList.add('swarm-off');
+    layer.classList.add('swarm-off');
+    document.body.classList.remove('swarm-hud');
+    setTimeout(function(){
+      if (raf) cancelAnimationFrame(raf);
+      cleanup();
+    }, 700);
+  }
+
+  function cleanup(){
+    ['swarmLayer','swarmBox','swarmHud'].forEach(function(id){
+      var n = document.getElementById(id); if (n) n.remove();
+    });
+    document.body.classList.remove('swarm-hud');
+  }
+
+  function startWhenReady(){
+    var tries = 0;
+    var iv = setInterval(function(){
+      tries++;
+      var ls = document.getElementById('loading-screen');
+      var hidden = !ls || ls.classList.contains('hidden') || ls.offsetParent === null && ls.style.display === 'none' || window.getComputedStyle(ls).opacity === '0' || ls.getBoundingClientRect().height === 0;
+      if (hidden || tries > 40){
+        clearInterval(iv);
+        var hero = SECTIONS[0];
+        buildSection(hero);
+      }
+    }, 200);
+  }
+  if (document.readyState === 'complete') startWhenReady();
+  else window.addEventListener('load', startWhenReady);
+}catch(err){
+  ['swarmLayer','swarmBox','swarmHud'].forEach(function(id){
+    var n = document.getElementById(id); if (n) n.remove();
+  });
+  document.body.classList.remove('swarm-hud');
+}
+})();
+
+</script>
 </body>
 </html>
