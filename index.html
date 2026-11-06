@@ -7109,7 +7109,10 @@ document.addEventListener('click', e => {
   });
   nav.addEventListener('mouseleave', () => { hovering = false; moveBubble(activeLink); });
 
-  // Rest the pill on the link of the section currently in view
+  // Rest the pill on the link of the section currently in view.
+  // Targets come from the nav links themselves, and a thin band across the
+  // middle of the viewport decides which section is active, so very tall
+  // sections (like experience) register too.
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -7117,8 +7120,14 @@ document.addEventListener('click', e => {
         if (match) { activeLink = match; if (!hovering) moveBubble(match); }
       }
     });
-  }, { threshold: 0.4 });
-  document.querySelectorAll('section[id], header[id]').forEach(s => observer.observe(s));
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.length > 1 && href.charAt(0) === '#') {
+      const target = document.getElementById(href.slice(1));
+      if (target) observer.observe(target);
+    }
+  });
 
   window.addEventListener('resize', () => moveBubble(currentEl || activeLink));
 })();
