@@ -3966,6 +3966,9 @@ body.swarm-hud #speedometer{bottom:82px !important}
   #swarmHud button{padding:5px 9px;font-size:10px}
   body.swarm-hud #speedometer{bottom:74px !important}
 }
+#swarmPlayBtn{font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.btn-swarm{background:rgba(88,166,255,.10);border:1px solid rgba(88,166,255,.55);color:#79c0ff}
+.btn-swarm:hover{background:rgba(88,166,255,.22);border-color:#58a6ff;color:#a5d8ff;transform:translateY(-2px)}
 
 </style>
 </head>
@@ -4061,6 +4064,7 @@ body.swarm-hud #speedometer{bottom:82px !important}
     <div class="hero-actions reveal">
       <a href="#connect" class="btn btn-primary">connect</a>
       <a href="#fluentloop" class="btn btn-fluent">fluentloop</a>
+      <button type="button" id="swarmPlayBtn" class="btn btn-swarm">&#9654; watch it build</button>
       <a href="https://drive.google.com/uc?export=download&id=1QUQIeGaykygYkTpPs-2ZMi9Q2IBO-RIe" download="Sriram_Kumar_Tentu_Resume.pdf" rel="noopener" class="btn btn-secondary">resume.pdf</a>
       <a href="https://calendly.com/tsriram261/book-a-call-with-sriram" target="_blank" rel="noopener" class="btn btn-call" onclick="if(typeof gtag==='function')gtag('event','book_call_click')">book a call</a>
     </div>
@@ -7681,9 +7685,9 @@ document.addEventListener('DOMContentLoaded', function(){
 <a id="waFloat" href="https://wa.me/14057628061?text=Hi%20Sriram%2C%20I%20visited%20your%20website." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" onclick="if(window.gtag){gtag('event','whatsapp_click',{page_location:window.location.href});}" style="display:none;position:fixed;right:24px;bottom:92px;z-index:9999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3);text-decoration:none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="#ffffff" aria-hidden="true"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.8 5 2.3 7L4.7 29l7.3-1.5c1.2.7 2.6 1 4 1 6.6 0 12-5.3 12-11.9S22.6 3 16 3zm0 21.7c-1.2 0-2.4-.3-3.5-.9l-.4-.2-3.9.8.9-3.7-.3-.4a8.6 8.6 0 0 1-1.3-4.4C7.5 10.1 11.3 6.3 16 6.3s8.5 3.8 8.5 8.6S20.7 24.7 16 24.7zm4.6-6.4c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a10.6 10.6 0 0 1-3.1-1.9 11.6 11.6 0 0 1-2.1-2.7c-.2-.4 0-.6.2-.8l.5-.6c.1-.2.2-.3.3-.5v-.5c0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/></svg></a>
 <script>(function(){var b=document.getElementById('waFloat');function t(){if(!b)return;var y=window.scrollY||window.pageYOffset;b.style.display=(y>520)?'flex':'none';}window.addEventListener('scroll',t,{passive:true});t();})();</script>
 <!-- Swarm Rebuild effect (v19) -->
-<div id="swarmLayer" aria-hidden="true"></div>
+<div id="swarmLayer" class="swarm-off" aria-hidden="true"></div>
 <div id="swarmBox" aria-hidden="true"><span id="swarmBoxLabel">Agent &middot; Building</span><span class="swarmHandle h-tl"></span><span class="swarmHandle h-tr"></span><span class="swarmHandle h-bl"></span><span class="swarmHandle h-br"></span></div>
-<div id="swarmHud" role="group" aria-label="Agent build progress">
+<div id="swarmHud" class="swarm-off" role="group" aria-label="Agent build progress">
   <div class="swarmDots" id="swarmDots"></div>
   <div class="swarmLayers" id="swarmLayers">LAYERS 0/6</div>
   <div class="swarmTrack"><div class="swarmFill" id="swarmFill"></div></div>
@@ -7695,14 +7699,10 @@ document.addEventListener('DOMContentLoaded', function(){
 <script>
 (function(){
 'use strict';
-/* Swarm Rebuild effect (v19): agent cursors build each section as it appears.
-   Plays once per browser session. Force with ?swarm=1. Skips on reduced motion. */
+/* Swarm Rebuild effect (v20): runs ONLY when the hero "watch it build"
+   button is clicked (or ?swarm=1). The page otherwise stays the normal site. */
 try{
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { cleanup(); return; }
-  var forced = /[?&]swarm=1/.test(location.search);
-  if (!forced) {
-    try { if (sessionStorage.getItem('swarmSeen')) { cleanup(); return; } } catch(e){}
-  }
+  var playBtn = document.getElementById('swarmPlayBtn');
   var layer = document.getElementById('swarmLayer');
   var box = document.getElementById('swarmBox');
   var boxLabel = document.getElementById('swarmBoxLabel');
@@ -7713,39 +7713,38 @@ try{
   var tourBtn = document.getElementById('swarmTourBtn');
   var speedBtn = document.getElementById('swarmSpeedBtn');
   var closeBtn = document.getElementById('swarmCloseBtn');
-  if (!layer || !box || !hud) return;
-
-  document.body.classList.add('swarm-hud');
+  if (!playBtn || !layer || !box || !hud) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    playBtn.style.display = 'none';
+    return;
+  }
 
   var COLORS = ['#6ee787','#58a6ff','#f778ba','#ffa657','#a371f7','#79c0ff'];
   var NAMES  = ['A1','A2','A3','A4','A5','A6'];
-  var agents = [];
+  var SECTIONS = [
+    { id:'top',        label:'HERO' },
+    { id:'about',      label:'ABOUT' },
+    { id:'experience', label:'EXPERIENCE' },
+    { id:'skills',     label:'SKILLS' },
+    { id:'projects',   label:'PROJECTS' },
+    { id:'connect',    label:'CONNECT' }
+  ];
   var W = window.innerWidth, H = window.innerHeight;
-  for (var i=0;i<6;i++){
-    var el = document.createElement('div');
-    el.className = 'swarmCursor';
-    el.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24"><path d="M4 2 L20 12 L12.5 13.5 L9 21 Z" fill="'+COLORS[i]+'" stroke="rgba(0,0,0,.35)" stroke-width="1"/></svg><span class="swarmTag" style="background:'+COLORS[i]+'">'+NAMES[i]+'</span>';
-    layer.appendChild(el);
-    var d = document.createElement('span');
-    d.className = 'swarmDot'; d.style.background = COLORS[i];
-    dotsWrap.appendChild(d);
-    agents.push({ el:el, dot:d, x: W/2 + (i-2.5)*46, y: H*0.42 + (i%3)*26, tx:0, ty:0, seed: Math.random()*Math.PI*2 });
-  }
+  var agents = [], state = {}, layersDone = 0;
+  var speed = 1, SPEEDS = [1, 1.5, 2, 0.5], speedIdx = 0;
+  var running = false, finished = false, flocking = false, touring = false;
+  var currentTarget = null, raf = null, io = null;
+  var mouse = { x: W/2, y: H/2, seen:false };
+  window.addEventListener('mousemove', function(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.seen=true; }, {passive:true});
+  window.addEventListener('resize', function(){ W = window.innerWidth; H = window.innerHeight; }, {passive:true});
+
   function setTargets(cx, cy, spread){
     for (var j=0;j<agents.length;j++){
-      var a = (j/agents.length)*Math.PI*2 + agents[j].seed*0.15;
+      var a = (j/Math.max(1,agents.length))*Math.PI*2 + agents[j].seed*0.15;
       agents[j].tx = cx + Math.cos(a)*spread;
       agents[j].ty = cy + Math.sin(a)*spread*0.62;
     }
   }
-  setTargets(W/2, H*0.42, 90);
-
-  var mouse = { x: W/2, y: H/2, seen:false };
-  window.addEventListener('mousemove', function(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.seen=true; }, {passive:true});
-
-  var speed = 1, SPEEDS = [1, 1.5, 2, 0.5], speedIdx = 0;
-  var finished = false, flocking = false, currentTarget = null, raf = null;
-
   function frame(t){
     for (var j=0;j<agents.length;j++){
       var ag = agents[j];
@@ -7765,30 +7764,15 @@ try{
     if (flocking && mouse.seen) setTargets(mouse.x, mouse.y, 56);
     raf = requestAnimationFrame(frame);
   }
-  raf = requestAnimationFrame(frame);
-
   function wait(ms){ return new Promise(function(res){ setTimeout(res, ms / speed); }); }
-
-  var SECTIONS = [
-    { id:'top',        label:'HERO' },
-    { id:'about',      label:'ABOUT' },
-    { id:'experience', label:'EXPERIENCE' },
-    { id:'skills',     label:'SKILLS' },
-    { id:'projects',   label:'PROJECTS' },
-    { id:'connect',    label:'CONNECT' }
-  ];
-  var state = {}, layersDone = 0;
-  SECTIONS.forEach(function(s){ state[s.id] = 'pending'; });
-
   function updateHud(){
     layersEl.textContent = 'LAYERS ' + layersDone + '/6';
     fillEl.style.width = (layersDone/6*100) + '%';
-    if (layersDone >= 6) fillEl.classList.add('done');
+    if (layersDone >= 6) fillEl.classList.add('done'); else fillEl.classList.remove('done');
   }
   function setDots(working){
-    for (var j=0;j<agents.length;j++) agents[j].dot.classList.toggle('working', working);
+    for (var j=0;j<agents.length;j++) if (agents[j].dot) agents[j].dot.classList.toggle('working', working);
   }
-
   function visible(el){
     var r = el.getBoundingClientRect();
     return r.width > 130 && r.height > 22;
@@ -7805,24 +7789,22 @@ try{
       var kids = cont.children;
       for (k=0;k<kids.length && picks.length<3;k++){
         var kid = kids[k];
-        if (picks.indexOf(kid) >= 0) continue;
-        if (kid === head) continue;
-        if (visible(kid) && !kid.contains(head)) picks.push(kid);
+        if (picks.indexOf(kid) >= 0 || kid === head) continue;
+        if (visible(kid) && !(head && kid.contains(head))) picks.push(kid);
       }
     }
     if (!picks.length) picks.push(sec);
     return picks.slice(0,3);
   }
-
   async function buildSection(s){
-    if (state[s.id] !== 'pending' || finished) return;
+    if (!running || finished || state[s.id] !== 'pending') return;
     state[s.id] = 'building';
     var sec = document.getElementById(s.id);
     if (!sec){ state[s.id]='done'; layersDone++; updateHud(); maybeFinish(); return; }
     setDots(true);
     var blocks = blocksFor(sec, s.id);
     for (var b=0;b<blocks.length;b++){
-      if (finished) return;
+      if (!running || finished) return;
       var blk = blocks[b];
       blk.scrollIntoView({ block:'nearest', behavior:'auto' });
       currentTarget = blk;
@@ -7839,26 +7821,13 @@ try{
     layersDone++; updateHud();
     maybeFinish();
   }
-
-  var io = null;
-  if ('IntersectionObserver' in window){
-    io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if (en.isIntersecting){
-          var s = SECTIONS.find(function(x){ return x.id === en.target.id; });
-          if (s) buildSection(s);
-        }
-      });
-    }, { threshold: 0.18 });
-    SECTIONS.forEach(function(s){ var el = document.getElementById(s.id); if (el) io.observe(el); });
-  }
-
-  var touring = false;
+  function maybeFinish(){ if (layersDone >= SECTIONS.length) finish(false); }
   async function tour(){
+    if (!running) return;
     if (touring){ touring = false; tourBtn.textContent = 'Tour'; return; }
     touring = true; tourBtn.textContent = 'Stop';
     for (var i=0;i<SECTIONS.length;i++){
-      if (!touring || finished) break;
+      if (!touring || !running || finished) break;
       var el = document.getElementById(SECTIONS[i].id);
       if (!el) continue;
       el.scrollIntoView({ block:'start', behavior:'smooth' });
@@ -7868,24 +7837,10 @@ try{
     }
     touring = false; tourBtn.textContent = 'Tour';
   }
-  tourBtn.addEventListener('click', tour);
-  window.addEventListener('wheel', function(){ if (touring){ touring=false; tourBtn.textContent='Tour'; } }, { passive:true });
-  window.addEventListener('touchmove', function(){ if (touring){ touring=false; tourBtn.textContent='Tour'; } }, { passive:true });
-
-  speedBtn.addEventListener('click', function(){
-    speedIdx = (speedIdx + 1) % SPEEDS.length;
-    speed = SPEEDS[speedIdx];
-    speedBtn.textContent = speed + 'x';
-  });
-  closeBtn.addEventListener('click', function(){ finish(true); });
-
-  function maybeFinish(){ if (layersDone >= SECTIONS.length) finish(false); }
-
   async function finish(manual){
-    if (finished) return;
-    finished = true;
+    if (!running || finished) return;
+    finished = true; touring = false;
     if (io) io.disconnect();
-    try { sessionStorage.setItem('swarmSeen','1'); } catch(e){}
     currentTarget = null;
     box.classList.remove('on');
     if (!manual){
@@ -7900,37 +7855,67 @@ try{
     document.body.classList.remove('swarm-hud');
     setTimeout(function(){
       if (raf) cancelAnimationFrame(raf);
-      cleanup();
+      layer.innerHTML = ''; dotsWrap.innerHTML = ''; agents = [];
+      running = false;
     }, 700);
   }
-
-  function cleanup(){
-    ['swarmLayer','swarmBox','swarmHud'].forEach(function(id){
-      var n = document.getElementById(id); if (n) n.remove();
-    });
-    document.body.classList.remove('swarm-hud');
+  function start(){
+    if (running) return;
+    running = true; finished = false; flocking = false; touring = false;
+    layersDone = 0; state = {};
+    SECTIONS.forEach(function(s){ state[s.id] = 'pending'; });
+    updateHud();
+    tourBtn.textContent = 'Tour';
+    speedBtn.textContent = speed + 'x';
+    layer.innerHTML = ''; dotsWrap.innerHTML = ''; agents = [];
+    for (var i=0;i<6;i++){
+      var el = document.createElement('div');
+      el.className = 'swarmCursor';
+      el.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24"><path d="M4 2 L20 12 L12.5 13.5 L9 21 Z" fill="'+COLORS[i]+'" stroke="rgba(0,0,0,.35)" stroke-width="1"/></svg><span class="swarmTag" style="background:'+COLORS[i]+'">'+NAMES[i]+'</span>';
+      layer.appendChild(el);
+      var d = document.createElement('span');
+      d.className = 'swarmDot'; d.style.background = COLORS[i];
+      dotsWrap.appendChild(d);
+      agents.push({ el:el, dot:d, x: W/2 + (i-2.5)*46, y: H*0.42 + (i%3)*26, tx:0, ty:0, seed: Math.random()*Math.PI*2 });
+    }
+    setTargets(W/2, H*0.42, 90);
+    layer.classList.remove('swarm-off');
+    hud.classList.remove('swarm-off');
+    document.body.classList.add('swarm-hud');
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(frame);
+    if ('IntersectionObserver' in window){
+      io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting){
+            var s = null;
+            for (var i=0;i<SECTIONS.length;i++) if (SECTIONS[i].id === en.target.id) s = SECTIONS[i];
+            if (s) buildSection(s);
+          }
+        });
+      }, { threshold: 0.18 });
+      SECTIONS.forEach(function(s){ var el = document.getElementById(s.id); if (el) io.observe(el); });
+    }
+    buildSection(SECTIONS[0]);
   }
-
-  function startWhenReady(){
-    var tries = 0;
-    var iv = setInterval(function(){
-      tries++;
-      var ls = document.getElementById('loading-screen');
-      var hidden = !ls || ls.classList.contains('hidden') || ls.offsetParent === null && ls.style.display === 'none' || window.getComputedStyle(ls).opacity === '0' || ls.getBoundingClientRect().height === 0;
-      if (hidden || tries > 40){
-        clearInterval(iv);
-        var hero = SECTIONS[0];
-        buildSection(hero);
-      }
-    }, 200);
+  playBtn.addEventListener('click', start);
+  tourBtn.addEventListener('click', tour);
+  speedBtn.addEventListener('click', function(){
+    speedIdx = (speedIdx + 1) % SPEEDS.length;
+    speed = SPEEDS[speedIdx];
+    speedBtn.textContent = speed + 'x';
+  });
+  closeBtn.addEventListener('click', function(){ finish(true); });
+  window.addEventListener('wheel', function(){ if (touring){ touring=false; tourBtn.textContent='Tour'; } }, { passive:true });
+  window.addEventListener('touchmove', function(){ if (touring){ touring=false; tourBtn.textContent='Tour'; } }, { passive:true });
+  if (/[?&]swarm=1/.test(location.search)){
+    window.addEventListener('load', function(){ setTimeout(start, 600); });
   }
-  if (document.readyState === 'complete') startWhenReady();
-  else window.addEventListener('load', startWhenReady);
 }catch(err){
+  var b = document.getElementById('swarmPlayBtn'); if (b) b.style.display = 'none';
   ['swarmLayer','swarmBox','swarmHud'].forEach(function(id){
     var n = document.getElementById(id); if (n) n.remove();
   });
-  document.body.classList.remove('swarm-hud');
 }
 })();
 
