@@ -2855,15 +2855,21 @@ body.light-mode .spotlight-mock { background: rgba(240,244,241,0.8); }
 .nav-bubble {
   position: absolute;
   height: 30px;
-  background: var(--term-soft);
-  border: 1px solid var(--glass-border);
-  border-radius: 8px;
-  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.03) 48%, rgba(110,231,135,0.10) 100%), var(--term-soft);
+  border: 1px solid rgba(110,231,135,0.38);
+  border-radius: 100px;
+  box-shadow: 0 0 18px var(--term-glow), 0 4px 14px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -8px 14px rgba(110,231,135,0.10);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: left 0.45s var(--spring), width 0.45s var(--spring), height 0.45s var(--spring), opacity 0.3s ease;
   pointer-events: none;
   z-index: 0;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-bubble { transition: opacity 0.3s ease; }
 }
 .nav-links a { z-index: 1; }
 
@@ -7080,32 +7086,41 @@ document.addEventListener('click', e => {
   const nav = document.querySelector('nav');
   const bubble = document.getElementById('navBubble');
   const links = document.querySelectorAll('.nav-links a');
-  if (!bubble || !links.length) return;
+  if (!nav || !bubble || !links.length) return;
+
+  let activeLink = null;
+  let currentEl = null;
+  let hovering = false;
 
   function moveBubble(el) {
+    if (!el) { bubble.style.opacity = '0'; currentEl = null; return; }
     const navRect = nav.getBoundingClientRect();
     const elRect = el.getBoundingClientRect();
     bubble.style.width = elRect.width + 'px';
+    bubble.style.height = elRect.height + 'px';
     bubble.style.left = (elRect.left - navRect.left) + 'px';
     bubble.style.opacity = '1';
+    currentEl = el;
   }
 
   links.forEach(link => {
-    link.addEventListener('mouseenter', () => moveBubble(link));
+    link.addEventListener('mouseenter', () => { hovering = true; moveBubble(link); });
+    link.addEventListener('click', () => { activeLink = link; });
   });
-  nav.addEventListener('mouseleave', () => { bubble.style.opacity = '0'; });
+  nav.addEventListener('mouseleave', () => { hovering = false; moveBubble(activeLink); });
 
-  // Set bubble on active section
+  // Rest the pill on the link of the section currently in view
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        const id = e.target.id;
-        const match = document.querySelector(`.nav-links a[href="#${id}"]`);
-        if (match) moveBubble(match);
+        const match = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+        if (match) { activeLink = match; if (!hovering) moveBubble(match); }
       }
     });
   }, { threshold: 0.4 });
   document.querySelectorAll('section[id], header[id]').forEach(s => observer.observe(s));
+
+  window.addEventListener('resize', () => moveBubble(currentEl || activeLink));
 })();
 
 /* ---------- PARTICLE HEART (Three.js) ---------- */
